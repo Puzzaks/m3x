@@ -10,16 +10,15 @@ topics:
   - ai
   - android
   - agentic
-publish_to: 'none'
 
 environment:
   sdk: ^3.0.0
+  flutter: ">=3.10.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  m3x_core:
-    path: ../m3x_core
+  m3x_core: ^0.0.1
 
 dev_dependencies:
   flutter_test:

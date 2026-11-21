@@ -9,7 +9,6 @@ topics:
   - hive
   - persistence
   - database
-publish_to: 'none'
 
 environment:
   sdk: ^3.0.0
@@ -19,10 +18,8 @@ dependencies:
     sdk: flutter
   hive: ^2.2.3
   hive_flutter: ^1.1.0
-  m3x_core:
-    path: ../m3x_core
-  m3x_dict:
-    path: ../m3x_dict
+  m3x_core: ^0.0.1
+  m3x_dict: ^0.0.2
 
 dev_dependencies:
   flutter_test:
