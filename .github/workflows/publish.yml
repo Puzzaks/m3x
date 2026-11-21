@@ -54,6 +54,26 @@ jobs:
         working-directory: ${{ steps.resolve.outputs.dir }}
         run: flutter test
 
+      - name: Mint GitHub OIDC token for pub.dev
+        shell: bash
+        run: |
+          SEP="&"
+          if [[ "${ACTIONS_ID_TOKEN_REQUEST_URL}" != *"?"* ]]; then
+            SEP="?"
+          fi
+          OIDC_TOKEN=$(curl -sSfL \
+            -H "Authorization: bearer ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}" \
+            "${ACTIONS_ID_TOKEN_REQUEST_URL}${SEP}audience=https://pub.dev" \
+            | jq -r '.value')
+          if [[ -z "${OIDC_TOKEN}" || "${OIDC_TOKEN}" == "null" ]]; then
+            echo "::error::Failed to obtain GitHub Actions OIDC token for https://pub.dev"
+            exit 1
+          fi
+          echo "::add-mask::${OIDC_TOKEN}"
+          echo "PUB_TOKEN=${OIDC_TOKEN}" >> "$GITHUB_ENV"
+
       - name: Publish to pub.dev (OIDC)
         working-directory: ${{ steps.resolve.outputs.dir }}
-        run: flutter pub publish --force
+        run: |
+          dart pub token add https://pub.dev --env-var=PUB_TOKEN
+          flutter pub publish --force
