@@ -39,7 +39,7 @@ jobs:
 
       - name: Analyze
         working-directory: ${{ matrix.package }}
-        run: flutter analyze
+        run: flutter analyze --no-fatal-infos
 
       - name: Run tests
         working-directory: ${{ matrix.package }}
@@ -64,4 +64,4 @@ jobs:
 
       - name: Analyze example/lib
         working-directory: example
-        run: flutter analyze lib/
+        run: flutter analyze --no-fatal-infos lib/

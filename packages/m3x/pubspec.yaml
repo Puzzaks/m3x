@@ -10,7 +10,6 @@ topics:
   - flutter
   - ecosystem
   - m3x
-publish_to: 'none'
 
 environment:
   sdk: ^3.0.0
@@ -18,20 +17,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  m3x_core:
-    path: ../m3x_core
-  m3x_dict:
-    path: ../m3x_dict
-  m3x_ui:
-    path: ../m3x_ui
-  m3x_chat:
-    path: ../m3x_chat
-  m3x_mesh:
-    path: ../m3x_mesh
-  m3x_storage:
-    path: ../m3x_storage
-  m3x_gh:
-    path: ../m3x_gh
+  m3x_core: ^0.0.1
+  m3x_dict: ^0.0.2
+  m3x_ui: ^0.1.1
+  m3x_chat: ^0.2.3
+  m3x_mesh: ^1.1.6
+  m3x_storage: ^0.0.1
+  m3x_gh: ^0.0.1
 
 dev_dependencies:
   flutter_test:

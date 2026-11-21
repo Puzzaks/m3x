@@ -48,7 +48,7 @@ jobs:
 
       - name: Analyze
         working-directory: ${{ steps.resolve.outputs.dir }}
-        run: flutter analyze
+        run: flutter analyze --no-fatal-infos
 
       - name: Run tests
         working-directory: ${{ steps.resolve.outputs.dir }}

@@ -44,6 +44,24 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^6.0.0
 
+dependency_overrides:
+  m3x:
+    path: ../packages/m3x
+  m3x_ui:
+    path: ../packages/m3x_ui
+  m3x_chat:
+    path: ../packages/m3x_chat
+  m3x_dict:
+    path: ../packages/m3x_dict
+  m3x_core:
+    path: ../packages/m3x_core
+  m3x_mesh:
+    path: ../packages/m3x_mesh
+  m3x_storage:
+    path: ../packages/m3x_storage
+  m3x_gh:
+    path: ../packages/m3x_gh
+
 flutter:
   uses-material-design: true
   assets:
