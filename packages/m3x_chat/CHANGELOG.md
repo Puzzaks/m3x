@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.4
+
+- Standardized documentation and metadata to Material 3 eXtended (m3x) branding with independence disclaimer.
+
 ## 0.2.3
 
 - Migrated from discontinued `flutter_markdown` to `flutter_markdown_plus`.

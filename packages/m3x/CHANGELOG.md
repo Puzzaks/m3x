@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.6
+
+- Standardized documentation and metadata to Material 3 eXtended (m3x) branding with independence disclaimer.
+
 ## 0.0.5
 
 - Standardized `pub.dev` metadata, `The Unlicense` license, `.pubignore`, and documentation across the M3x ecosystem.

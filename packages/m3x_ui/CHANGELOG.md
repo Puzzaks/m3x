@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.2
+
+- Standardized documentation and metadata to Material 3 eXtended (m3x) branding with independence disclaimer.
+
 ## 0.1.1
 
 - Added adaptive layout primitives (`M3xAdaptiveMasterDetail`, `M3xAdaptiveSplitHero`, `M3xAdaptiveContentFrame`) and scroll-velocity `MotionBlurContainer`.

@@ -1,6 +1,6 @@
 name: m3x_storage
 description: Opinionated Hive persistence middleware with primitive accessors, chat history persistence, and DictionaryStorage adapters for Material 3 eXtended (m3x) apps.
-version: 0.0.1
+version: 0.0.2
 homepage: https://puzzak.page
 repository: https://github.com/Puzzaks/m3x/tree/main/packages/m3x_storage
 issue_tracker: https://github.com/Puzzaks/m3x/issues

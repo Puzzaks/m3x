@@ -1,6 +1,6 @@
 name: m3x_gh
 description: Standalone GitHub repository explorer (Docs tabs, issues, releases, security advisories, and PAT rate-limiting) for Material 3 eXtended (m3x) apps.
-version: 0.0.1
+version: 0.0.2
 homepage: https://puzzak.page
 repository: https://github.com/Puzzaks/m3x/tree/main/packages/m3x_gh
 issue_tracker: https://github.com/Puzzaks/m3x/issues

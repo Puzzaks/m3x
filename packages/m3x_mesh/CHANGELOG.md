@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.7
+
+- Standardized documentation and metadata to Material 3 eXtended (m3x) branding with independence disclaimer.
+
 ## 1.1.6
 
 - Wired `M3xMeshContentProvider.headlessHandler` into `call("call_tool", ...)` when `readyHost == null && !requiresForegroundOverlay`, allowing companion apps (such as `page.puzzak.speech`) to execute native Kotlin headless tools without launching a foreground Flutter Activity or cold-booting a FlutterEngine.

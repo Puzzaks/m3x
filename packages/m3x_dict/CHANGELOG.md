@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.3
+
+- Standardized documentation and metadata to Material 3 eXtended (m3x) branding with independence disclaimer.
+
 ## 0.0.2
 
 - Upgraded `Dictionary.setup()` to Stale-While-Revalidate (SWR) 3-tier loading with bundled asset baseline + cached overlay + non-blocking parallel remote HTTP refresh (`onRemoteUpdated`).

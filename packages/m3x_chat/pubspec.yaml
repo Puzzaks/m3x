@@ -1,6 +1,6 @@
 name: m3x_chat
 description: Chat bubble and Markdown conversation UI complication for Material 3 eXtended (m3x_ui).
-version: 0.2.3
+version: 0.2.4
 homepage: https://puzzak.page
 repository: https://github.com/Puzzaks/m3x/tree/main/packages/m3x_chat
 issue_tracker: https://github.com/Puzzaks/m3x/issues
