@@ -1,0 +1,23 @@
+name: m3x_core
+description: Shared core utilities, deduplicating AnalyticsService logger, and byte/duration formatters for M3x apps.
+version: 0.0.1
+homepage: https://puzzak.page
+repository: https://github.com/Puzzaks/m3x/tree/main/packages/m3x_core
+issue_tracker: https://github.com/Puzzaks/m3x/issues
+topics:
+  - logging
+  - analytics
+  - formatting
+  - utilities
+
+environment:
+  sdk: ^3.0.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0

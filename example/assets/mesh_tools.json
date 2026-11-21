@@ -1,0 +1,22 @@
+[
+  {
+    "name": "demo_get_environment",
+    "app": "demo",
+    "packageName": "page.puzzak.demo",
+    "description": "Returns the Demo UI Playground app's current theme, version, haptics, and platform state. ONLY call when the user explicitly asks about the Demo UI Playground app itself. NEVER call for attached photos/images, nature/objects, general questions, AI/device architecture, or unrelated follow-ups.",
+    "parameters": {
+      "type": "object",
+      "properties": {}
+    }
+  },
+  {
+    "name": "demo_get_components",
+    "app": "demo",
+    "packageName": "page.puzzak.demo",
+    "description": "Returns Flutter UI widgets (Cards, Bento, Scaffolds, Category) in the Demo UI Playground app. NEVER call for questions about AI, Gemini Nano, device hardware, or system architecture.",
+    "parameters": {
+      "type": "object",
+      "properties": {}
+    }
+  }
+]

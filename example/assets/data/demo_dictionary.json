@@ -1,0 +1,38 @@
+{
+  "ecosystem": {
+    "author": "Puzzak",
+    "version": "1.0.0",
+    "packages": [
+      {
+        "name": "puzzak_ui",
+        "role": "Core Material 3 Expressive Elements & Complications"
+      },
+      {
+        "name": "puzzak_ui_chat",
+        "role": "Markdown Chat Bubbles & Streaming Conversation View"
+      },
+      {
+        "name": "puzzak_dict",
+        "role": "Standalone 3-Tier JSON Localization"
+      },
+      {
+        "name": "puzzak_core",
+        "role": "Deduplicating Logger & Byte/Duration Formatters"
+      }
+    ]
+  },
+  "sample_servers": [
+    {
+      "name": "Kyiv Edge Node",
+      "url": "https://kyiv.puzzak.page/AIO.php",
+      "cpu": 0.34,
+      "ram": 0.62
+    },
+    {
+      "name": "Frankfurt Relay",
+      "url": "https://fra.puzzak.page/AIO.php",
+      "cpu": 0.18,
+      "ram": 0.41
+    }
+  ]
+}

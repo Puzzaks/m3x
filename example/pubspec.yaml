@@ -1,0 +1,59 @@
+name: demo
+description: "UI and library testing and updating playground for apps by Puzzak"
+publish_to: 'none'
+
+version: 1.3.8+26111501
+repository: https://github.com/Puzzaks/m3x
+
+environment:
+  sdk: ^3.0.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  provider: ^6.0.5
+  # Capped below 1.9.0: dynamic_color 1.9.0 relies on AGP 9 built-in Kotlin and
+  # fails to compile on AGP 8.x (`Unresolved reference: kotlin { compilerOptions }`).
+  dynamic_color: ">=1.8.1 <1.9.0"
+  in_app_purchase: ^3.2.0
+  # google_mobile_ads: ^5.3.0
+  http: ^1.2.2
+  flutter_markdown_plus: ^1.0.7
+  package_info_plus: ^8.1.0
+  url_launcher: ^6.3.0
+  m3x:
+    path: ../packages/m3x
+  m3x_ui:
+    path: ../packages/m3x_ui
+  m3x_chat:
+    path: ../packages/m3x_chat
+  m3x_dict:
+    path: ../packages/m3x_dict
+  m3x_core:
+    path: ../packages/m3x_core
+  m3x_mesh:
+    path: ../packages/m3x_mesh
+  m3x_storage:
+    path: ../packages/m3x_storage
+  m3x_gh:
+    path: ../packages/m3x_gh
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - pubspec.yaml
+    - CHANGELOG.md
+    - assets/translations/languages.json
+    - assets/translations/en.json
+    - assets/translations/uk.json
+    - assets/translations/de.json
+    - assets/translations/tr.json
+    - assets/translations/zh.json
+    - assets/data/demo_dictionary.json
+    - assets/mesh_tools.json

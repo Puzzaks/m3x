@@ -1,0 +1,39 @@
+name: m3x
+description: Consolidated umbrella package for the M3x Flutter ecosystem (UI, chat, dictionary, core, mesh, storage, and GitHub explorer).
+version: 0.0.5
+homepage: https://puzzak.page
+repository: https://github.com/Puzzaks/m3x/tree/main/packages/m3x
+issue_tracker: https://github.com/Puzzaks/m3x/issues
+topics:
+  - material-design
+  - ui
+  - flutter
+  - ecosystem
+  - m3x
+publish_to: 'none'
+
+environment:
+  sdk: ^3.0.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  m3x_core:
+    path: ../m3x_core
+  m3x_dict:
+    path: ../m3x_dict
+  m3x_ui:
+    path: ../m3x_ui
+  m3x_chat:
+    path: ../m3x_chat
+  m3x_mesh:
+    path: ../m3x_mesh
+  m3x_storage:
+    path: ../m3x_storage
+  m3x_gh:
+    path: ../m3x_gh
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0

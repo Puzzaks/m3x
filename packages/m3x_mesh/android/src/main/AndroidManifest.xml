@@ -1,0 +1,20 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.puzzak.m3x_mesh">
+
+    <queries>
+        <intent>
+            <action android:name="com.puzzak.m3x.mesh.ACTION_MESH_NODE" />
+        </intent>
+    </queries>
+
+    <application>
+        <provider
+            android:name=".M3xMeshContentProvider"
+            android:authorities="${applicationId}.mesh"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.puzzak.m3x.mesh.ACTION_MESH_NODE" />
+            </intent-filter>
+        </provider>
+    </application>
+</manifest>

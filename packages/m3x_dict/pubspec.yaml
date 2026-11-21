@@ -1,0 +1,24 @@
+name: m3x_dict
+description: Standalone triple-tier JSON localization and dictionary manager (cache, bundled assets, and remote HTTP refresh) for M3x apps.
+version: 0.0.2
+homepage: https://puzzak.page
+repository: https://github.com/Puzzaks/m3x/tree/main/packages/m3x_dict
+issue_tracker: https://github.com/Puzzaks/m3x/issues
+topics:
+  - localization
+  - i18n
+  - translation
+  - json
+
+environment:
+  sdk: ^3.0.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^1.1.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0

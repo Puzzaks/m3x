@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  analyze-and-test:
+    name: Analyze & Test (${{ matrix.package }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        package:
+          - packages/m3x_core
+          - packages/m3x_dict
+          - packages/m3x_ui
+          - packages/m3x_chat
+          - packages/m3x_gh
+          - packages/m3x_mesh
+          - packages/m3x_storage
+          - packages/m3x
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        working-directory: ${{ matrix.package }}
+        run: flutter pub get
+
+      - name: Analyze
+        working-directory: ${{ matrix.package }}
+        run: flutter analyze
+
+      - name: Run tests
+        working-directory: ${{ matrix.package }}
+        run: flutter test
+
+  example-analyze:
+    name: Analyze Playground (example/)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        working-directory: example
+        run: flutter pub get
+
+      - name: Analyze example/lib
+        working-directory: example
+        run: flutter analyze lib/

@@ -1,0 +1,34 @@
+name: m3x_mesh
+description: Inter-App Agentic Mesh Protocol, headless tool calling, and MCP-compatible schemas for M3x apps.
+version: 1.1.6
+homepage: https://puzzak.page
+repository: https://github.com/Puzzaks/m3x/tree/main/packages/m3x_mesh
+issue_tracker: https://github.com/Puzzaks/m3x/issues
+topics:
+  - ipc
+  - mcp
+  - ai
+  - android
+  - agentic
+publish_to: 'none'
+
+environment:
+  sdk: ^3.0.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  m3x_core:
+    path: ../m3x_core
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: com.puzzak.m3x_mesh
+        pluginClass: M3xMeshPlugin

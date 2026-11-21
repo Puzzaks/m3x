@@ -1,0 +1,30 @@
+name: m3x_storage
+description: Opinionated Hive persistence middleware with primitive accessors, chat history persistence, and DictionaryStorage adapters for M3x apps.
+version: 0.0.1
+homepage: https://puzzak.page
+repository: https://github.com/Puzzaks/m3x/tree/main/packages/m3x_storage
+issue_tracker: https://github.com/Puzzaks/m3x/issues
+topics:
+  - storage
+  - hive
+  - persistence
+  - database
+publish_to: 'none'
+
+environment:
+  sdk: ^3.0.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  m3x_core:
+    path: ../m3x_core
+  m3x_dict:
+    path: ../m3x_dict
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0

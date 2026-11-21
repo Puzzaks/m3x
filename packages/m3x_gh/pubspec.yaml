@@ -1,0 +1,31 @@
+name: m3x_gh
+description: Standalone GitHub repository explorer (Docs tabs, issues, releases, security advisories, and PAT rate-limiting) for M3x apps.
+version: 0.0.1
+homepage: https://puzzak.page
+repository: https://github.com/Puzzaks/m3x/tree/main/packages/m3x_gh
+issue_tracker: https://github.com/Puzzaks/m3x/issues
+topics:
+  - github
+  - markdown
+  - material-design
+  - ui
+publish_to: 'none'
+
+environment:
+  sdk: ^3.0.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  m3x_ui:
+    path: ../m3x_ui
+  m3x_core:
+    path: ../m3x_core
+  http: ^1.2.2
+  url_launcher: ^6.3.0
+  flutter_markdown_plus: ^1.0.7
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0

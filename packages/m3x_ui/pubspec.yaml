@@ -1,0 +1,24 @@
+name: m3x_ui
+description: Consolidated Material 3 Expressive UI elements, page scaffolds, pickers, onboarding, and telemetry cards.
+version: 0.1.1
+homepage: https://puzzak.page
+repository: https://github.com/Puzzaks/m3x/tree/main/packages/m3x_ui
+issue_tracker: https://github.com/Puzzaks/m3x/issues
+topics:
+  - material-design
+  - ui
+  - widgets
+  - material3
+  - adaptive-layout
+
+environment:
+  sdk: ^3.0.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
