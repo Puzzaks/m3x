@@ -1,6 +1,6 @@
 # m3x_gh
 
-Standalone Material 3 **GitHub Repository Explorer** for the [M3x](https://github.com/Puzzaks/m3x) Flutter ecosystem.
+Standalone Material 3 **GitHub Repository Explorer** for the [Material 3 eXtended (`m3x`)](https://github.com/Puzzaks/m3x) Flutter ecosystem.
 
 Embed a full-featured repository browser inside any Flutter app with one line — complete with root Markdown doc tabs, Issues & comments, Releases with downloadable asset chips, Security Advisories, and optional GitHub Personal Access Token (PAT) authentication for 5,000 req/hr rate limits.
 

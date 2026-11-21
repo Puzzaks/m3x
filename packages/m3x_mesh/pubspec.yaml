@@ -1,5 +1,5 @@
 name: m3x_mesh
-description: Inter-App Agentic Mesh Protocol, headless tool calling, and MCP-compatible schemas for M3x apps.
+description: Inter-App Agentic Mesh Protocol, headless tool calling, and MCP-compatible schemas for Material 3 eXtended (m3x) apps.
 version: 1.1.6
 homepage: https://puzzak.page
 repository: https://github.com/Puzzaks/m3x/tree/main/packages/m3x_mesh

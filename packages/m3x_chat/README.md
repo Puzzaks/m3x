@@ -1,6 +1,6 @@
 # m3x_chat
 
-Optional chat bubble, reasoning block, loading skeleton, and Markdown conversation UI complication for [`m3x_ui`](https://github.com/Puzzaks/m3x/tree/main/packages/m3x_ui).
+Optional chat bubble, reasoning block, loading skeleton, and Markdown conversation UI complication for **Material 3 eXtended** ([`m3x_ui`](https://github.com/Puzzaks/m3x/tree/main/packages/m3x_ui)).
 
 Isolates `flutter_markdown_plus` and `url_launcher` so apps using `m3x_ui` only pull in Markdown chat dependencies when rendering AI or assistant conversations.
 

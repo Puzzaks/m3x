@@ -1,5 +1,5 @@
 name: m3x_ui
-description: Consolidated Material 3 Expressive UI elements, page scaffolds, pickers, onboarding, and telemetry cards.
+description: Material 3 eXtended (m3x) pure-Flutter UI elements, adaptive scaffolds, pickers, onboarding, and telemetry cards built on Material 3.
 version: 0.1.1
 homepage: https://puzzak.page
 repository: https://github.com/Puzzaks/m3x/tree/main/packages/m3x_ui

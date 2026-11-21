@@ -1,6 +1,6 @@
 # m3x_core
 
-Shared core utilities, deduplicating `AnalyticsService` logger, and byte/throughput/duration formatters (`M3xFormatters`) for the [M3x](https://github.com/Puzzaks/m3x) Flutter ecosystem — with **zero third-party dependencies**.
+Shared core utilities, deduplicating `AnalyticsService` logger, and byte/throughput/duration formatters (`M3xFormatters`) for the [Material 3 eXtended (`m3x`)](https://github.com/Puzzaks/m3x) Flutter ecosystem — with **zero third-party dependencies**.
 
 ## Features
 

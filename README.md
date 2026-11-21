@@ -6,6 +6,8 @@
 
 Modular **Material 3 eXtended (`m3x`)** Flutter packages & Android **M3X Mesh IPC** ecosystem by [Puzzak](https://puzzak.page).
 
+> *Material 3 eXtended (`m3x`) is an independent open-source project by Puzzak built on top of Flutter's Material 3 design system and is not affiliated with or endorsed by Google.*
+
 Every package in this monorepo is designed to stay focused, dependency-light, and composable — use only the leaf packages you need, or import the `m3x` umbrella package for automatic `pubspec.yaml` metadata derivation and full ecosystem wiring.
 
 ---

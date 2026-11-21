@@ -1,5 +1,5 @@
 name: m3x
-description: Consolidated umbrella package for the M3x Flutter ecosystem (UI, chat, dictionary, core, mesh, storage, and GitHub explorer).
+description: Consolidated umbrella package for the Material 3 eXtended (m3x) Flutter ecosystem (UI, chat, dictionary, core, mesh, storage, and GitHub explorer).
 version: 0.0.5
 homepage: https://puzzak.page
 repository: https://github.com/Puzzaks/m3x/tree/main/packages/m3x

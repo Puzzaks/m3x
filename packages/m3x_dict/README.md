@@ -1,6 +1,6 @@
 # m3x_dict
 
-Standalone triple-tier JSON localization and dictionary manager (local cache, bundled assets, and background remote HTTP refresh) for the [M3x](https://github.com/Puzzaks/m3x) Flutter ecosystem.
+Standalone triple-tier JSON localization and dictionary manager (local cache, bundled assets, and background remote HTTP refresh) for the [Material 3 eXtended (`m3x`)](https://github.com/Puzzaks/m3x) Flutter ecosystem.
 
 Completely decoupled from UI widgets and specific persistence plugins, `m3x_dict` delivers instant (`<10ms`) offline-first startup with Stale-While-Revalidate (SWR) over-the-air translation updates.
 

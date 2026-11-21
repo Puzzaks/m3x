@@ -1,6 +1,8 @@
 # m3x_ui
 
-Pure-Flutter **Material 3 Expressive** UI elements, segmented bento card groups, adaptive responsive scaffolds, option pickers, onboarding wizards, telemetry cards, and velocity-driven motion blur — with **zero third-party dependencies**.
+Pure-Flutter **Material 3 eXtended (`m3x`)** UI elements, segmented bento card groups, adaptive responsive scaffolds, option pickers, onboarding wizards, telemetry cards, and velocity-driven motion blur — with **zero third-party dependencies**.
+
+> *Material 3 eXtended (`m3x`) is an independent open-source project by Puzzak built on top of Flutter's Material 3 design system and is not affiliated with or endorsed by Google.*
 
 ## Features
 
@@ -41,7 +43,7 @@ Widget buildSettings(BuildContext context) {
       context.cards.cardGroup([
         CardContents.tap(
           title: 'Appearance',
-          subtitle: 'Material 3 Expressive dynamic color',
+          subtitle: 'Material 3 eXtended dynamic color',
           action: () {},
         ),
         CardContents.turn(

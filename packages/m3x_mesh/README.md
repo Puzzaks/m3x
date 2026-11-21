@@ -1,6 +1,6 @@
 # m3x_mesh
 
-Inter-App **Agentic Mesh Protocol**, headless Android tool calling, and MCP-compatible tool schemas for the [M3x](https://github.com/Puzzaks/m3x) ecosystem.
+Inter-App **Agentic Mesh Protocol**, headless Android tool calling, and MCP-compatible tool schemas for the [Material 3 eXtended (`m3x`)](https://github.com/Puzzaks/m3x) ecosystem.
 
 Allows Flutter and native Kotlin Android apps on the same device to discover each other, advertise JSON-Schema tools, and execute JSON-RPC 2.0 tool calls over Android `ContentProvider` IPC — including headless native execution without cold-booting a foreground Flutter UI.
 

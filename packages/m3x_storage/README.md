@@ -1,6 +1,6 @@
 # m3x_storage
 
-Opinionated **Hive persistence middleware** with type-safe primitive accessors, chat history persistence, and zero-overhead `DictionaryStorage` adapters for the [M3x](https://github.com/Puzzaks/m3x) ecosystem.
+Opinionated **Hive persistence middleware** with type-safe primitive accessors, chat history persistence, and zero-overhead `DictionaryStorage` adapters for the [Material 3 eXtended (`m3x`)](https://github.com/Puzzaks/m3x) ecosystem.
 
 ## Features
 
