@@ -53,7 +53,8 @@ String preprocessGitHubMarkdown(String raw) {
   );
 
   // 7. Strip container tags keeping content
-  md = md.replaceAll(RegExp(r'<\/?(?:div|p|center|span)[^>]*>', caseSensitive: false), '\n');
+  md = md.replaceAll(
+      RegExp(r'<\/?(?:div|p|center|span)[^>]*>', caseSensitive: false), '\n');
 
   // 8. Replace common HTML entities
   md = md

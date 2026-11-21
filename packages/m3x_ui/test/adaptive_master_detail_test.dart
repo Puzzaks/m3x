@@ -1,3 +1,4 @@
+// ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:m3x_ui/m3x_ui.dart';
@@ -213,7 +214,8 @@ void main() {
       },
     );
 
-    testWidgets('masterCollapsed toggles master pane width cleanly to 0 and back',
+    testWidgets(
+        'masterCollapsed toggles master pane width cleanly to 0 and back',
         (tester) async {
       _setViewport(tester, const Size(1200, 800));
       final ValueNotifier<bool> collapsedNotifier = ValueNotifier<bool>(false);
@@ -283,7 +285,8 @@ void main() {
       },
     );
 
-    testWidgets('shows emptyDetailBuilder in split mode when nothing is selected',
+    testWidgets(
+        'shows emptyDetailBuilder in split mode when nothing is selected',
         (tester) async {
       _setViewport(tester, const Size(1000, 800));
       await tester.pumpWidget(
@@ -308,7 +311,8 @@ void main() {
   });
 
   group('M3xAdaptiveSplitHero', () {
-    testWidgets('switches cleanly from stacked (500px) to side-by-side (1000px)',
+    testWidgets(
+        'switches cleanly from stacked (500px) to side-by-side (1000px)',
         (tester) async {
       _setViewport(tester, const Size(500, 800));
 
@@ -332,7 +336,8 @@ void main() {
       );
       await tester.pumpAndSettle();
 
-      expect(find.byKey(const ValueKey('m3x_split_hero_compact')), findsOneWidget);
+      expect(
+          find.byKey(const ValueKey('m3x_split_hero_compact')), findsOneWidget);
       final Offset compactHeroPos =
           tester.getTopLeft(find.byKey(const ValueKey('hero_pane')));
       final Offset compactContentPos =

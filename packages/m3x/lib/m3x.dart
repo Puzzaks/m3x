@@ -101,7 +101,8 @@ class M3x {
 
     // 1. Load and parse pubspec.yaml
     try {
-      final String yaml = await effectiveBundle.loadString(effectivePubspecPath);
+      final String yaml =
+          await effectiveBundle.loadString(effectivePubspecPath);
       parsePubspec(yaml);
     } catch (_) {
       // Graceful fallback when assets are not bundled (e.g. headless unit tests)
@@ -113,7 +114,8 @@ class M3x {
 
     // 2. Load CHANGELOG.md if bundled
     try {
-      changelogContent = await effectiveBundle.loadString(effectiveChangelogPath);
+      changelogContent =
+          await effectiveBundle.loadString(effectiveChangelogPath);
     } catch (_) {
       changelogContent = '';
     }
@@ -188,8 +190,7 @@ class M3x {
       pendingDepProps.clear();
     }
 
-    final RegExp topLevelDepRegex =
-        RegExp(r'^  ([a-zA-Z0-9_]+):(?:\s*(.*))?$');
+    final RegExp topLevelDepRegex = RegExp(r'^  ([a-zA-Z0-9_]+):(?:\s*(.*))?$');
     final RegExp nestedDepPropRegex =
         RegExp(r'^\s{4,}([a-zA-Z0-9_]+):(?:\s*(.*))?$');
 
@@ -419,4 +420,3 @@ class M3xConfig {
   Map<String, String> get metadata => Map.unmodifiable(M3x.metadata);
   Map<String, String> get dependencies => Map.unmodifiable(M3x.dependencies);
 }
-

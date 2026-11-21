@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:math' as math;
 import 'dart:typed_data';
+// ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -200,18 +201,15 @@ class _ChatMessageBubbleState extends State<ChatMessageBubble> {
     if (author.isNotEmpty &&
         formattedTime != null &&
         formattedTime.isNotEmpty) {
-      return '$author  •  $formattedTime';
+      return '$author  вЂў  $formattedTime';
     }
     if (author.isNotEmpty) return author;
     return formattedTime ?? '';
   }
 
   static String _extractInitials(String raw, {required String fallback}) {
-    final parts = raw
-        .trim()
-        .split(RegExp(r'\s+'))
-        .where((p) => p.isNotEmpty)
-        .toList();
+    final parts =
+        raw.trim().split(RegExp(r'\s+')).where((p) => p.isNotEmpty).toList();
     if (parts.isEmpty) return fallback;
     if (parts.length == 1) {
       final runes = parts.first.runes.take(2).toList();
@@ -246,9 +244,10 @@ class _ChatMessageBubbleState extends State<ChatMessageBubble> {
       );
     }
 
-    final rawLabel = (msg.avatarText != null && msg.avatarText!.trim().isNotEmpty)
-        ? msg.avatarText!.trim()
-        : msg.displayAuthor;
+    final rawLabel =
+        (msg.avatarText != null && msg.avatarText!.trim().isNotEmpty)
+            ? msg.avatarText!.trim()
+            : msg.displayAuthor;
     final initials =
         _extractInitials(rawLabel, fallback: msg.isUser ? 'U' : 'AI');
 
@@ -287,8 +286,8 @@ class _ChatMessageBubbleState extends State<ChatMessageBubble> {
     }
 
     return Padding(
-      padding:
-          EdgeInsets.only(bottom: widget.message.message.isNotEmpty ? 2.0 : 0.0),
+      padding: EdgeInsets.only(
+          bottom: widget.message.message.isNotEmpty ? 2.0 : 0.0),
       child: GestureDetector(
         onTap: () => ChatMessageBubble.showFullScreenImage(
           context,
@@ -360,9 +359,8 @@ class _ChatMessageBubbleState extends State<ChatMessageBubble> {
     return AnimatedSize(
       duration: const Duration(milliseconds: 200),
       curve: Curves.easeOutCubic,
-      alignment: widget.message.isUser
-          ? Alignment.centerRight
-          : Alignment.centerLeft,
+      alignment:
+          widget.message.isUser ? Alignment.centerRight : Alignment.centerLeft,
       child: AnimatedOpacity(
         opacity: visible ? 1.0 : 0.0,
         duration: const Duration(milliseconds: 180),
@@ -380,7 +378,8 @@ class _ChatMessageBubbleState extends State<ChatMessageBubble> {
                     vertical: 3,
                   ),
                   decoration: BoxDecoration(
-                    color: scheme.surfaceContainerHighest.withValues(alpha: 0.65),
+                    color:
+                        scheme.surfaceContainerHighest.withValues(alpha: 0.65),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Text(
@@ -466,9 +465,8 @@ class _ChatMessageBubbleState extends State<ChatMessageBubble> {
                     if (hasThoughts)
                       Padding(
                         padding: EdgeInsets.only(
-                          bottom: (hasImage || hasMessage || hasCustom)
-                              ? 8.0
-                              : 0.0,
+                          bottom:
+                              (hasImage || hasMessage || hasCustom) ? 8.0 : 0.0,
                         ),
                         child: ChatThoughtsBlock(
                           thoughts: msg.thoughts!,

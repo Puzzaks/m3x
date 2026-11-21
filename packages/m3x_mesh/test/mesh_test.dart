@@ -53,7 +53,8 @@ void main() {
       );
 
       // Valid call
-      expect(tool.validateArguments({'a': 10, 'b': 20.5, 'tag': 'sum'}), isEmpty);
+      expect(
+          tool.validateArguments({'a': 10, 'b': 20.5, 'tag': 'sum'}), isEmpty);
 
       // Missing required parameter
       final missingErrors = tool.validateArguments({'a': 10});
@@ -62,7 +63,8 @@ void main() {
       // Invalid type
       final typeErrors = tool.validateArguments({'a': 'not_a_number', 'b': 20});
       expect(typeErrors.length, equals(1));
-      expect(typeErrors.first, contains("Parameter 'a' must be of type number"));
+      expect(
+          typeErrors.first, contains("Parameter 'a' must be of type number"));
     });
   });
 
@@ -102,15 +104,18 @@ void main() {
       expect(registry.contains('add'), isFalse);
     });
 
-    test('invokeTool successfully executes registered tool with valid params', () async {
-      final res = await registry.invokeTool('add', {'a': 5, 'b': 7}, callId: 'req_1');
+    test('invokeTool successfully executes registered tool with valid params',
+        () async {
+      final res =
+          await registry.invokeTool('add', {'a': 5, 'b': 7}, callId: 'req_1');
       expect(res.isSuccess, isTrue);
       expect(res.id, equals('req_1'));
       expect(res.result?['sum'], equals(12));
     });
 
     test('invokeTool returns methodNotFound for unregistered tool', () async {
-      final res = await registry.invokeTool('non_existent', {}, callId: 'req_2');
+      final res =
+          await registry.invokeTool('non_existent', {}, callId: 'req_2');
       expect(res.isError, isTrue);
       expect(res.error?.code, equals(M3xToolError.methodNotFound));
     });
@@ -143,7 +148,8 @@ void main() {
     });
 
     test('M3xToolResult success and error roundtrip', () {
-      final success = M3xToolResult.success(id: 'call_1', result: {'output': 'ok'});
+      final success =
+          M3xToolResult.success(id: 'call_1', result: {'output': 'ok'});
       final successJson = success.toJson();
       final restoredSuccess = M3xToolResult.fromJson(successJson);
       expect(restoredSuccess.isSuccess, isTrue);
@@ -199,7 +205,8 @@ void main() {
     });
 
     test('Client executes tool on simulated PTK app', () async {
-      final result = await client.callTool('ptk', 'ping_host', {'host': '8.8.8.8', 'count': 3});
+      final result = await client
+          .callTool('ptk', 'ping_host', {'host': '8.8.8.8', 'count': 3});
       expect(result.isSuccess, isTrue);
       expect(result.result?['host'], equals('8.8.8.8'));
       expect(result.result?['status'], equals('success'));
@@ -211,15 +218,20 @@ void main() {
       expect(result.result?['high_score'], equals(32768));
     });
 
-    test('Client returns methodNotFound for unregistered sibling app', () async {
+    test('Client returns methodNotFound for unregistered sibling app',
+        () async {
       final result = await client.callTool('unknown_app', 'do_something', {});
       expect(result.isError, isTrue);
       expect(result.error?.code, equals(M3xToolError.methodNotFound));
     });
 
-    test('URI builder produces standard Android ContentProvider URI with PAIOS & Demo mapping', () {
-      expect(M3xMeshClient.buildContentUri('ptk'), equals('content://page.puzzak.ptk.mesh'));
-      expect(M3xMeshClient.buildContentUri('page.puzzak.ptk'), equals('content://page.puzzak.ptk.mesh'));
+    test(
+        'URI builder produces standard Android ContentProvider URI with PAIOS & Demo mapping',
+        () {
+      expect(M3xMeshClient.buildContentUri('ptk'),
+          equals('content://page.puzzak.ptk.mesh'));
+      expect(M3xMeshClient.buildContentUri('page.puzzak.ptk'),
+          equals('content://page.puzzak.ptk.mesh'));
       expect(
         M3xMeshClient.buildContentUri('com.puzzak.geminilocal'),
         equals('content://page.puzzak.paios.mesh'),
@@ -242,22 +254,30 @@ void main() {
       );
     });
 
-    test('isPackageInstalled checks simulation registry in non-native mode', () async {
+    test('isPackageInstalled checks simulation registry in non-native mode',
+        () async {
       expect(await client.isPackageInstalled('ptk'), isTrue);
       expect(await client.isPackageInstalled('page.puzzak.ptk'), isTrue);
-      expect(await client.isPackageInstalled('com.puzzak.nonexistent'), isFalse);
+      expect(
+          await client.isPackageInstalled('com.puzzak.nonexistent'), isFalse);
     });
 
-    test('bypassAuthInDebug permits unsigned calls during development/test', () {
+    test('bypassAuthInDebug permits unsigned calls during development/test',
+        () {
       final debugClient = M3xMeshClient(bypassAuthInDebug: true);
       expect(debugClient.isSignatureAuthorized('com.puzzak.ptk'), isTrue);
 
       final prodClient = M3xMeshClient(bypassAuthInDebug: false);
       expect(prodClient.isSignatureAuthorized('com.puzzak.ptk', null), isFalse);
-      expect(prodClient.isSignatureAuthorized('com.puzzak.ptk', 'valid_sha256_hash'), isTrue);
+      expect(
+          prodClient.isSignatureAuthorized(
+              'com.puzzak.ptk', 'valid_sha256_hash'),
+          isTrue);
     });
 
-    test('Incoming tool dispatch executes local registry and returns JSON-RPC response', () async {
+    test(
+        'Incoming tool dispatch executes local registry and returns JSON-RPC response',
+        () async {
       final localRegistry = M3xToolRegistry([
         M3xTool(
           name: 'get_demo_state',
@@ -280,7 +300,8 @@ void main() {
         channel.codec.encodeMethodCall(
           const MethodCall('onIncomingToolCall', {
             'caller': 'page.puzzak.paios',
-            'payload': '{"jsonrpc":"2.0","id":"call_42","method":"get_demo_state","params":{}}',
+            'payload':
+                '{"jsonrpc":"2.0","id":"call_42","method":"get_demo_state","params":{}}',
           }),
         ),
         (data) {},
@@ -289,7 +310,9 @@ void main() {
       expect(meshClient.localRegistry.contains('get_demo_state'), isTrue);
     });
 
-    test('Local short-circuit dispatch executes directly in-memory without ContentProvider', () async {
+    test(
+        'Local short-circuit dispatch executes directly in-memory without ContentProvider',
+        () async {
       final localRegistry = M3xToolRegistry([
         M3xTool(
           name: 'query_local_ai',
@@ -312,16 +335,19 @@ void main() {
       final paiosClient = M3xMeshClient(
         localRegistry: localRegistry,
         localAppId: 'paios',
-        enableSimulation: false, // ensure simulation is off so it tests short-circuit logic
+        enableSimulation:
+            false, // ensure simulation is off so it tests short-circuit logic
       );
 
       // 1. Call via 'geminilocal' alias
-      final res1 = await paiosClient.callTool('geminilocal', 'query_local_ai', {'prompt': 'hello'});
+      final res1 = await paiosClient
+          .callTool('geminilocal', 'query_local_ai', {'prompt': 'hello'});
       expect(res1.isSuccess, isTrue);
       expect(res1.result?['response'], equals('In-memory response to: hello'));
 
       // 2. Call via 'paios' canonical ID
-      final res2 = await paiosClient.callTool('paios', 'query_local_ai', {'prompt': 'test 2'});
+      final res2 = await paiosClient
+          .callTool('paios', 'query_local_ai', {'prompt': 'test 2'});
       expect(res2.isSuccess, isTrue);
       expect(res2.result?['response'], equals('In-memory response to: test 2'));
 
@@ -331,7 +357,8 @@ void main() {
       expect(localTools.first.name, equals('query_local_ai'));
     });
 
-    test('Simulation mode toggling with disableSimulation and enableSimulation', () {
+    test('Simulation mode toggling with disableSimulation and enableSimulation',
+        () {
       final testClient = M3xMeshClient(enableSimulation: true);
       expect(testClient.isSimulationMode, isTrue);
 
@@ -342,7 +369,9 @@ void main() {
       expect(testClient.isSimulationMode, isTrue);
     });
 
-    test('checkAppStatus queries get_ai_status and returns online: true for simulated paios', () async {
+    test(
+        'checkAppStatus queries get_ai_status and returns online: true for simulated paios',
+        () async {
       final simClient = M3xMeshClient(enableSimulation: true);
       final status = await simClient.checkAppStatus('paios');
       expect(status['online'], isTrue);
@@ -350,7 +379,8 @@ void main() {
       expect(status['model_available'], isTrue);
     });
 
-    test('checkAppStatus works with local registry hosting get_ai_status', () async {
+    test('checkAppStatus works with local registry hosting get_ai_status',
+        () async {
       final localRegistry = M3xToolRegistry([
         M3xTool(
           name: 'get_ai_status',
@@ -385,7 +415,9 @@ void main() {
       expect(status['error'], isNotNull);
     });
 
-    test('queryTools preserves exact reverse-DNS packageName and resolves defaults', () async {
+    test(
+        'queryTools preserves exact reverse-DNS packageName and resolves defaults',
+        () async {
       final simClient = M3xMeshClient(enableSimulation: true);
       simClient.registerSimulatedApp(
         'com.example.foo',
@@ -415,10 +447,13 @@ void main() {
       expect(await simClient.getAppLabel('page.puzzak.ptk'), isNull);
     });
 
-    test('Zero-fallback: non-simulation client returns [] and errors instead of simulated apps', () async {
+    test(
+        'Zero-fallback: non-simulation client returns [] and errors instead of simulated apps',
+        () async {
       M3xMeshClient.clearDiscoveredPackagesCache();
       const channel = MethodChannel('com.puzzak.m3x_mesh');
-      final messenger = TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
+      final messenger =
+          TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
 
       // 1. Empty listMeshApps -> [] (not simulated apps)
       messenger.setMockMethodCallHandler(channel, (call) async {
@@ -434,7 +469,8 @@ void main() {
       expect(await liveClient.isPackageInstalled('ptk'), isFalse);
       expect(await liveClient.openAssistantBubble(), isFalse);
 
-      final execRes = await liveClient.callTool('ptk', 'ping_host', {'host': '1.1.1.1'});
+      final execRes =
+          await liveClient.callTool('ptk', 'ping_host', {'host': '1.1.1.1'});
       expect(execRes.isError, isTrue);
       expect(execRes.error?.message, contains('Mesh communication error'));
 
@@ -448,10 +484,13 @@ void main() {
       M3xMeshClient.clearDiscoveredPackagesCache();
     });
 
-    test('buildContentUri resolves discovered packages and preserves dot-separated IDs', () async {
+    test(
+        'buildContentUri resolves discovered packages and preserves dot-separated IDs',
+        () async {
       M3xMeshClient.clearDiscoveredPackagesCache();
       const channel = MethodChannel('com.puzzak.m3x_mesh');
-      final messenger = TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
+      final messenger =
+          TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
 
       String? lastQueryUri;
       String? lastOverlayPkg;
@@ -498,7 +537,8 @@ void main() {
 
       // Explicit knownPackages overrides fallback for short names
       expect(
-        M3xMeshClient.buildContentUri('custom', knownPackages: ['io.custom.app']),
+        M3xMeshClient.buildContentUri('custom',
+            knownPackages: ['io.custom.app']),
         equals('content://page.puzzak.custom.mesh'),
       );
       expect(

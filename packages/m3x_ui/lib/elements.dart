@@ -1,3 +1,4 @@
+// ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -32,7 +33,8 @@ class Cards {
 
   /// Calculates the segmented [BorderRadius] for a card at [index] in a grid
   /// of [totalCount] items with [columns] columns.
-  BorderRadius borderRadiusForIndex(int index, int totalCount, {int columns = 1}) {
+  BorderRadius borderRadiusForIndex(int index, int totalCount,
+      {int columns = 1}) {
     if (totalCount <= 1) {
       return BorderRadius.all(cardROuter);
     }
@@ -69,11 +71,11 @@ class Cards {
 
     return BorderRadius.only(
       topLeft: (row == 0 && col == 0) ? cardROuter : cardRInner,
-      topRight: (row == 0 && col == lastColInFirstRow) ? cardROuter : cardRInner,
+      topRight:
+          (row == 0 && col == lastColInFirstRow) ? cardROuter : cardRInner,
       bottomLeft: (row == lastRow && col == 0) ? cardROuter : cardRInner,
-      bottomRight: (row == lastRow && col == lastColInLastRow)
-          ? cardROuter
-          : cardRInner,
+      bottomRight:
+          (row == lastRow && col == lastColInLastRow) ? cardROuter : cardRInner,
     );
   }
 
@@ -246,8 +248,9 @@ class Cards {
         final List<Widget> rows = [];
         for (int r = 0; r < totalRows; r++) {
           final int startIdx = r * cols;
-          final int endIdx =
-              (startIdx + cols) > cards.length ? cards.length : (startIdx + cols);
+          final int endIdx = (startIdx + cols) > cards.length
+              ? cards.length
+              : (startIdx + cols);
           final int itemsInRow = endIdx - startIdx;
 
           final List<Widget> rowChildren = [];
@@ -289,7 +292,8 @@ class Cards {
             constraints: BoxConstraints(maxWidth: effectiveMaxWidth),
             child: Padding(
               padding: EdgeInsets.symmetric(
-                horizontal: (cardMarginH - multiColMarginH).clamp(0.0, double.infinity),
+                horizontal:
+                    (cardMarginH - multiColMarginH).clamp(0.0, double.infinity),
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -442,8 +446,9 @@ class ReorderableCardGroup extends StatelessWidget {
       ),
       itemBuilder: (context, index) {
         final Widget content = itemBuilder(context, index);
-        final Key itemKey =
-            keyBuilder != null ? keyBuilder!(index) : (content.key ?? ValueKey(index));
+        final Key itemKey = keyBuilder != null
+            ? keyBuilder!(index)
+            : (content.key ?? ValueKey(index));
 
         return Padding(
           key: itemKey,
@@ -1271,7 +1276,7 @@ class CardContents {
                       const SizedBox(width: 8),
                       Flexible(
                         child: Text(
-                          'AdMob Test Banner (320×50)',
+                          'AdMob Test Banner (320Г—50)',
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
@@ -1414,7 +1419,8 @@ class Category {
     return Padding(
       padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
       child: width != null
-          ? SizedBox(width: (width - 30).clamp(0.0, double.infinity), child: row)
+          ? SizedBox(
+              width: (width - 30).clamp(0.0, double.infinity), child: row)
           : row,
     );
   }
@@ -1540,7 +1546,9 @@ class TextPart {
         top: 10,
       ),
       child: SizedBox(
-        width: width != null ? (width - 40).clamp(0.0, double.infinity) : double.infinity,
+        width: width != null
+            ? (width - 40).clamp(0.0, double.infinity)
+            : double.infinity,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

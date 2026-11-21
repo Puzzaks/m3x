@@ -1,3 +1,4 @@
+// ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:m3x_ui/motion_blur.dart';
 
@@ -146,8 +147,7 @@ class _ChatThoughtsBlockState extends State<ChatThoughtsBlock>
 
   void _handleScrollNotification(ScrollNotification notification) {
     if (_isProgrammaticScroll) return;
-    if (notification.depth != 0 ||
-        notification.metrics.axis != Axis.vertical) {
+    if (notification.depth != 0 || notification.metrics.axis != Axis.vertical) {
       return;
     }
 
@@ -168,7 +168,7 @@ class _ChatThoughtsBlockState extends State<ChatThoughtsBlock>
         ? ((widget.thinkingTitle != null &&
                 widget.thinkingTitle!.trim().isNotEmpty)
             ? widget.thinkingTitle!.trim()
-            : 'Thinking…')
+            : 'ThinkingвЂ¦')
         : ((widget.thoughtProcessTitle != null &&
                 widget.thoughtProcessTitle!.trim().isNotEmpty)
             ? widget.thoughtProcessTitle!.trim()
@@ -191,9 +191,8 @@ class _ChatThoughtsBlockState extends State<ChatThoughtsBlock>
       child: Material(
         type: MaterialType.transparency,
         child: Column(
-          crossAxisAlignment: _expanded
-              ? CrossAxisAlignment.stretch
-              : CrossAxisAlignment.start,
+          crossAxisAlignment:
+              _expanded ? CrossAxisAlignment.stretch : CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             InkWell(

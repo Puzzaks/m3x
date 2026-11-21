@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.5
+
+- Added runnable `example/main.dart`, `pub.dev` package links, and Flutter 3.50 static analysis compatibility for 160/160 pub points.
+
 ## 0.2.4
 
 - Standardized documentation and metadata to Material 3 eXtended (m3x) branding with independence disclaimer.

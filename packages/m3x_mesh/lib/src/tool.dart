@@ -45,14 +45,18 @@ class M3xTool {
     String? app,
     String? packageName,
   }) {
-    final rawParams = json['parameters'] ?? json['inputSchema'] ?? const <String, dynamic>{};
+    final rawParams =
+        json['parameters'] ?? json['inputSchema'] ?? const <String, dynamic>{};
     final Map<String, dynamic> parsedParams;
     if (rawParams is Map<String, dynamic>) {
       parsedParams = rawParams;
     } else if (rawParams is Map) {
       parsedParams = Map<String, dynamic>.from(rawParams);
     } else {
-      parsedParams = const <String, dynamic>{'type': 'object', 'properties': <String, dynamic>{}};
+      parsedParams = const <String, dynamic>{
+        'type': 'object',
+        'properties': <String, dynamic>{}
+      };
     }
 
     return M3xTool(
@@ -99,39 +103,47 @@ class M3xTool {
         final propKey = entry.key.toString();
         final propDef = entry.value;
 
-        if (args.containsKey(propKey) && args[propKey] != null && propDef is Map) {
+        if (args.containsKey(propKey) &&
+            args[propKey] != null &&
+            propDef is Map) {
           final val = args[propKey];
           final expectedType = propDef['type']?.toString().toLowerCase();
 
           switch (expectedType) {
             case 'string':
               if (val is! String) {
-                errors.add("Parameter '$propKey' must be of type string (got ${val.runtimeType})");
+                errors.add(
+                    "Parameter '$propKey' must be of type string (got ${val.runtimeType})");
               }
               break;
             case 'integer':
               if (val is! int) {
-                errors.add("Parameter '$propKey' must be of type integer (got ${val.runtimeType})");
+                errors.add(
+                    "Parameter '$propKey' must be of type integer (got ${val.runtimeType})");
               }
               break;
             case 'number':
               if (val is! num) {
-                errors.add("Parameter '$propKey' must be of type number (got ${val.runtimeType})");
+                errors.add(
+                    "Parameter '$propKey' must be of type number (got ${val.runtimeType})");
               }
               break;
             case 'boolean':
               if (val is! bool) {
-                errors.add("Parameter '$propKey' must be of type boolean (got ${val.runtimeType})");
+                errors.add(
+                    "Parameter '$propKey' must be of type boolean (got ${val.runtimeType})");
               }
               break;
             case 'array':
               if (val is! List) {
-                errors.add("Parameter '$propKey' must be of type array (got ${val.runtimeType})");
+                errors.add(
+                    "Parameter '$propKey' must be of type array (got ${val.runtimeType})");
               }
               break;
             case 'object':
               if (val is! Map) {
-                errors.add("Parameter '$propKey' must be of type object (got ${val.runtimeType})");
+                errors.add(
+                    "Parameter '$propKey' must be of type object (got ${val.runtimeType})");
               }
               break;
           }

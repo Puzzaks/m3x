@@ -397,8 +397,8 @@ class M3xToolCallParser {
           (lastSignificant == '{' || lastSignificant == ',') &&
           _isKeyIdentifierStart(code)) {
         int end = i + 1;
-        while (end < input.length &&
-            _isKeyIdentifierChar(input.codeUnitAt(end))) {
+        while (
+            end < input.length && _isKeyIdentifierChar(input.codeUnitAt(end))) {
           end++;
         }
         int afterWs = end;

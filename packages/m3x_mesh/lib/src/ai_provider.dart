@@ -36,7 +36,8 @@ class MockAiProvider implements M3xAiProvider {
   final bool supportsLocalAi;
 
   /// Optional custom handler for prompt completions.
-  final FutureOr<String> Function(String prompt, List<M3xTool>? tools)? onExecute;
+  final FutureOr<String> Function(String prompt, List<M3xTool>? tools)?
+      onExecute;
 
   MockAiProvider({
     this.name = 'mock_ai',
@@ -65,7 +66,8 @@ class MockAiProvider implements M3xAiProvider {
     List<M3xTool>? tools,
     Map<String, dynamic>? context,
   }) async* {
-    final fullText = await executePrompt(prompt, tools: tools, context: context);
+    final fullText =
+        await executePrompt(prompt, tools: tools, context: context);
     final words = fullText.split(' ');
     for (int i = 0; i < words.length; i++) {
       yield (i == 0 ? '' : ' ') + words[i];

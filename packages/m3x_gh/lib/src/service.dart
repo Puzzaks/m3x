@@ -1,4 +1,5 @@
 import 'dart:convert';
+// ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'models.dart';
@@ -65,7 +66,8 @@ class M3xGitHubService extends ChangeNotifier {
   List<GitHubRepoDoc> get rootDocs => List.unmodifiable(_rootDocs);
   GitHubRepoDoc? get selectedDoc => _selectedDoc;
 
-  static const List<({String owner, String repo, String title})> defaultPresetRepos = [
+  static const List<({String owner, String repo, String title})>
+      defaultPresetRepos = [
     (owner: 'Puzzaks', repo: 'PAIOS', title: 'PAIOS (geminilocal)'),
     (owner: 'Puzzaks', repo: 'PTK', title: 'PTK (Puzzak ToolKit)'),
     (owner: 'Puzzaks', repo: 'MCPlayer', title: 'MCPlayer (Monstercat Player)'),
@@ -74,7 +76,8 @@ class M3xGitHubService extends ChangeNotifier {
     (owner: 'Puzzaks', repo: '.github', title: 'Puzzaks Organization Meta'),
   ];
 
-  List<({String owner, String repo, String title})> presetRepos = defaultPresetRepos;
+  List<({String owner, String repo, String title})> presetRepos =
+      defaultPresetRepos;
 
   Map<String, String> get _headers {
     final headers = <String, String>{
@@ -90,7 +93,9 @@ class M3xGitHubService extends ChangeNotifier {
   void _updateRateLimits(http.Response response) {
     final remaining = response.headers['x-ratelimit-remaining'];
     final limit = response.headers['x-ratelimit-limit'];
-    if (remaining != null) _rateLimitRemaining = int.tryParse(remaining) ?? _rateLimitRemaining;
+    if (remaining != null) {
+      _rateLimitRemaining = int.tryParse(remaining) ?? _rateLimitRemaining;
+    }
     if (limit != null) _rateLimitTotal = int.tryParse(limit) ?? _rateLimitTotal;
   }
 
@@ -185,10 +190,12 @@ class M3xGitHubService extends ChangeNotifier {
   /// Discovers all root markdown/documentation files in the repository.
   Future<void> fetchRootDocs() async {
     try {
-      final res = await http.get(
-        Uri.parse('https://api.github.com/repos/$_owner/$_repo/contents'),
-        headers: _headers,
-      ).timeout(const Duration(seconds: 10));
+      final res = await http
+          .get(
+            Uri.parse('https://api.github.com/repos/$_owner/$_repo/contents'),
+            headers: _headers,
+          )
+          .timeout(const Duration(seconds: 10));
 
       _updateRateLimits(res);
 
@@ -241,7 +248,9 @@ class M3xGitHubService extends ChangeNotifier {
   Future<bool> selectDocByPath(String path) async {
     final cleanPath = path.replaceAll('./', '').toLowerCase();
     final match = _rootDocs.firstWhere(
-      (d) => d.path.toLowerCase() == cleanPath || d.name.toLowerCase() == cleanPath,
+      (d) =>
+          d.path.toLowerCase() == cleanPath ||
+          d.name.toLowerCase() == cleanPath,
       orElse: () => GitHubRepoDoc(
         name: '',
         path: '',
@@ -267,10 +276,12 @@ class M3xGitHubService extends ChangeNotifier {
     }
 
     try {
-      final res = await http.get(
-        Uri.parse(doc.downloadUrl),
-        headers: _headers,
-      ).timeout(const Duration(seconds: 10));
+      final res = await http
+          .get(
+            Uri.parse(doc.downloadUrl),
+            headers: _headers,
+          )
+          .timeout(const Duration(seconds: 10));
 
       if (res.statusCode == 200) {
         doc.content = res.body;
@@ -289,17 +300,21 @@ class M3xGitHubService extends ChangeNotifier {
 
   /// Fetches arbitrary file content from repository (for nested folder navigation).
   Future<String> fetchArbitraryFileContent(String relativePath) async {
-    final cleanPath = relativePath.startsWith('/') ? relativePath.substring(1) : relativePath;
+    final cleanPath =
+        relativePath.startsWith('/') ? relativePath.substring(1) : relativePath;
     if (_docContentCache.containsKey(cleanPath)) {
       return _docContentCache[cleanPath]!;
     }
 
     try {
-      final url = 'https://raw.githubusercontent.com/$_owner/$_repo/HEAD/$cleanPath';
-      final res = await http.get(
-        Uri.parse(url),
-        headers: _headers,
-      ).timeout(const Duration(seconds: 10));
+      final url =
+          'https://raw.githubusercontent.com/$_owner/$_repo/HEAD/$cleanPath';
+      final res = await http
+          .get(
+            Uri.parse(url),
+            headers: _headers,
+          )
+          .timeout(const Duration(seconds: 10));
 
       if (res.statusCode == 200) {
         _docContentCache[cleanPath] = res.body;
@@ -334,7 +349,8 @@ class M3xGitHubService extends ChangeNotifier {
           }
         }
       } else {
-        _readmeContent = '_No README found or inaccessible for this repository._';
+        _readmeContent =
+            '_No README found or inaccessible for this repository._';
       }
     } catch (e) {
       _readmeContent = '_Error fetching README: ${e}_';
@@ -345,17 +361,21 @@ class M3xGitHubService extends ChangeNotifier {
   /// Fetches open and closed issues.
   Future<void> fetchIssues() async {
     try {
-      final res = await http.get(
-        Uri.parse('https://api.github.com/repos/$_owner/$_repo/issues?state=all&per_page=30'),
-        headers: _headers,
-      ).timeout(const Duration(seconds: 10));
+      final res = await http
+          .get(
+            Uri.parse(
+                'https://api.github.com/repos/$_owner/$_repo/issues?state=all&per_page=30'),
+            headers: _headers,
+          )
+          .timeout(const Duration(seconds: 10));
 
       _updateRateLimits(res);
 
       if (res.statusCode == 200) {
         final List<dynamic> list = jsonDecode(res.body) as List<dynamic>;
         _issues = list
-            .where((item) => (item as Map<String, dynamic>)['pull_request'] == null)
+            .where((item) =>
+                (item as Map<String, dynamic>)['pull_request'] == null)
             .map((item) => GitHubIssue.fromJson(item as Map<String, dynamic>))
             .toList();
       } else {
@@ -370,10 +390,13 @@ class M3xGitHubService extends ChangeNotifier {
   /// Fetches releases and tags.
   Future<void> fetchReleases() async {
     try {
-      final res = await http.get(
-        Uri.parse('https://api.github.com/repos/$_owner/$_repo/releases?per_page=20'),
-        headers: _headers,
-      ).timeout(const Duration(seconds: 10));
+      final res = await http
+          .get(
+            Uri.parse(
+                'https://api.github.com/repos/$_owner/$_repo/releases?per_page=20'),
+            headers: _headers,
+          )
+          .timeout(const Duration(seconds: 10));
 
       _updateRateLimits(res);
 
@@ -392,10 +415,12 @@ class M3xGitHubService extends ChangeNotifier {
   /// Fetches repository LICENSE content.
   Future<void> fetchLicense() async {
     try {
-      final res = await http.get(
-        Uri.parse('https://api.github.com/repos/$_owner/$_repo/license'),
-        headers: _headers,
-      ).timeout(const Duration(seconds: 10));
+      final res = await http
+          .get(
+            Uri.parse('https://api.github.com/repos/$_owner/$_repo/license'),
+            headers: _headers,
+          )
+          .timeout(const Duration(seconds: 10));
 
       _updateRateLimits(res);
 
@@ -409,19 +434,24 @@ class M3xGitHubService extends ChangeNotifier {
           final cleanBase64 = content.replaceAll('\n', '').replaceAll('\r', '');
           _licenseContent = utf8.decode(base64Decode(cleanBase64));
         } else {
-          _licenseContent = data['body'] as String? ?? 'License available at ${data['html_url']}';
+          _licenseContent = data['body'] as String? ??
+              'License available at ${data['html_url']}';
         }
       } else {
-        final rawRes = await http.get(
-          Uri.parse('https://raw.githubusercontent.com/$_owner/$_repo/HEAD/LICENSE'),
-        ).timeout(const Duration(seconds: 10));
+        final rawRes = await http
+            .get(
+              Uri.parse(
+                  'https://raw.githubusercontent.com/$_owner/$_repo/HEAD/LICENSE'),
+            )
+            .timeout(const Duration(seconds: 10));
 
         if (rawRes.statusCode == 200) {
           _licenseName = 'Repository License';
           _licenseContent = rawRes.body;
         } else {
           _licenseName = 'No License Detected';
-          _licenseContent = 'No formal LICENSE file was detected in the repository root.';
+          _licenseContent =
+              'No formal LICENSE file was detected in the repository root.';
         }
       }
     } catch (e) {
@@ -437,17 +467,21 @@ class M3xGitHubService extends ChangeNotifier {
     }
 
     try {
-      final res = await http.get(
-        Uri.parse('https://api.github.com/repos/$_owner/$_repo/issues/$issueNumber/comments?per_page=50'),
-        headers: _headers,
-      ).timeout(const Duration(seconds: 10));
+      final res = await http
+          .get(
+            Uri.parse(
+                'https://api.github.com/repos/$_owner/$_repo/issues/$issueNumber/comments?per_page=50'),
+            headers: _headers,
+          )
+          .timeout(const Duration(seconds: 10));
 
       _updateRateLimits(res);
 
       if (res.statusCode == 200) {
         final List<dynamic> list = jsonDecode(res.body) as List<dynamic>;
         final comments = list
-            .map((item) => GitHubIssueComment.fromJson(item as Map<String, dynamic>))
+            .map((item) =>
+                GitHubIssueComment.fromJson(item as Map<String, dynamic>))
             .toList();
         _commentsCache[issueNumber] = comments;
         return comments;

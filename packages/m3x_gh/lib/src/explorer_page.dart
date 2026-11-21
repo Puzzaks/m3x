@@ -1,3 +1,4 @@
+// ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:m3x_ui/m3x_ui.dart';
@@ -70,7 +71,8 @@ class _M3xGitHubExplorerPageState extends State<M3xGitHubExplorerPage>
   late TabController _tabController;
   final TextEditingController _tokenCtrl = TextEditingController();
 
-  final List<({String path, String title, String content})> _nestedDocStack = [];
+  final List<({String path, String title, String content})> _nestedDocStack =
+      [];
   bool _isLoadingNestedDoc = false;
 
   @override
@@ -79,8 +81,10 @@ class _M3xGitHubExplorerPageState extends State<M3xGitHubExplorerPage>
     _tabController = TabController(length: 4, vsync: this);
 
     final service = M3xGitHubService.instance;
-    final owner = widget.initialOwner ?? widget.config?.owner ?? M3xGitHub.defaultOwner;
-    final repo = widget.initialRepo ?? widget.config?.repo ?? M3xGitHub.defaultRepo;
+    final owner =
+        widget.initialOwner ?? widget.config?.owner ?? M3xGitHub.defaultOwner;
+    final repo =
+        widget.initialRepo ?? widget.config?.repo ?? M3xGitHub.defaultRepo;
 
     if (owner != null && repo != null) {
       service.setTargetRepository(owner, repo);
@@ -152,9 +156,7 @@ class _M3xGitHubExplorerPageState extends State<M3xGitHubExplorerPage>
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(
-                        alt != null && alt.isNotEmpty
-                            ? alt
-                            : 'Image ($uriStr)',
+                        alt != null && alt.isNotEmpty ? alt : 'Image ($uriStr)',
                         style: const TextStyle(fontSize: 12),
                       ),
                     ),
@@ -197,7 +199,8 @@ class _M3xGitHubExplorerPageState extends State<M3xGitHubExplorerPage>
       setState(() {
         _isLoadingNestedDoc = false;
         final docName = cleanHref.split('/').last;
-        _nestedDocStack.add((path: cleanHref, title: docName, content: content));
+        _nestedDocStack
+            .add((path: cleanHref, title: docName, content: content));
       });
       return;
     }
@@ -538,7 +541,8 @@ class _M3xGitHubExplorerPageState extends State<M3xGitHubExplorerPage>
                                       child: Icon(
                                         issue.state == 'open'
                                             ? Icons.adjust_rounded
-                                            : Icons.check_circle_outline_rounded,
+                                            : Icons
+                                                .check_circle_outline_rounded,
                                         color: Colors.white,
                                         size: 18,
                                       ),
@@ -556,7 +560,7 @@ class _M3xGitHubExplorerPageState extends State<M3xGitHubExplorerPage>
                                       children: [
                                         const SizedBox(height: 2),
                                         Text(
-                                          'Opened by ${issue.author} • ${issue.commentsCount} comments',
+                                          'Opened by ${issue.author} вЂў ${issue.commentsCount} comments',
                                           style: const TextStyle(fontSize: 12),
                                         ),
                                         if (issue.labels.isNotEmpty) ...[
@@ -571,8 +575,8 @@ class _M3xGitHubExplorerPageState extends State<M3xGitHubExplorerPage>
                                                 ),
                                               );
                                               return Container(
-                                                padding: const EdgeInsets
-                                                    .symmetric(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
                                                   horizontal: 6,
                                                   vertical: 1,
                                                 ),
@@ -630,22 +634,21 @@ class _M3xGitHubExplorerPageState extends State<M3xGitHubExplorerPage>
                                         Row(
                                           children: [
                                             Container(
-                                              padding: const EdgeInsets
-                                                  .symmetric(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
                                                 horizontal: 8,
                                                 vertical: 3,
                                               ),
                                               decoration: BoxDecoration(
-                                                color:
-                                                    scheme.primaryContainer,
+                                                color: scheme.primaryContainer,
                                                 borderRadius:
                                                     BorderRadius.circular(12),
                                               ),
                                               child: Text(
                                                 rel.tagName,
                                                 style: TextStyle(
-                                                  color: scheme
-                                                      .onPrimaryContainer,
+                                                  color:
+                                                      scheme.onPrimaryContainer,
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 12,
                                                 ),
@@ -711,7 +714,7 @@ class _M3xGitHubExplorerPageState extends State<M3xGitHubExplorerPage>
                                                   size: 16,
                                                 ),
                                                 label: Text(
-                                                  '${asset.name} ($sizeMb MB • ${asset.downloadCount} dl)',
+                                                  '${asset.name} ($sizeMb MB вЂў ${asset.downloadCount} dl)',
                                                   style: const TextStyle(
                                                     fontSize: 11,
                                                   ),
@@ -898,9 +901,7 @@ class _IssueDetailsSheetState extends State<_IssueDetailsSheet> {
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(
-                        alt != null && alt.isNotEmpty
-                            ? alt
-                            : 'Image ($uriStr)',
+                        alt != null && alt.isNotEmpty ? alt : 'Image ($uriStr)',
                         style: const TextStyle(fontSize: 12),
                       ),
                     ),
@@ -1061,7 +1062,7 @@ class _IssueDetailsSheetState extends State<_IssueDetailsSheet> {
               ),
               const SizedBox(height: 6),
               Text(
-                'Opened by ${issue.author} • ${issue.commentsCount} comments',
+                'Opened by ${issue.author} вЂў ${issue.commentsCount} comments',
                 style: Theme.of(context).textTheme.labelMedium?.copyWith(
                       color: Theme.of(context).colorScheme.onSurfaceVariant,
                     ),

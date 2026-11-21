@@ -55,7 +55,8 @@ class M3xToolRegistry {
     Map<String, dynamic> args, {
     String? callId,
   }) async {
-    final effectiveId = callId ?? DateTime.now().microsecondsSinceEpoch.toString();
+    final effectiveId =
+        callId ?? DateTime.now().microsecondsSinceEpoch.toString();
 
     final tool = _tools[name];
     if (tool == null) {

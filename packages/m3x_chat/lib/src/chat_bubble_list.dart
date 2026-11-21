@@ -1,3 +1,4 @@
+// ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:m3x_ui/m3x_ui.dart';
@@ -247,7 +248,10 @@ class ChatTextPart extends TextPart {
         )
         .toList();
 
-    if (isContinuing && aiChunk.isEmpty && parsed.isNotEmpty && !parsed.last.isUser) {
+    if (isContinuing &&
+        aiChunk.isEmpty &&
+        parsed.isNotEmpty &&
+        !parsed.last.isUser) {
       parsed[parsed.length - 1] = parsed.last.copyWith(
         isLoading: true,
         loadingLabel: continuingLabel ?? parsed.last.loadingLabel,

@@ -1,3 +1,4 @@
+// ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -278,9 +279,8 @@ class TelemetrySparklineCard extends StatelessWidget {
         shape: borderRadius != null
             ? RoundedRectangleBorder(borderRadius: borderRadius!)
             : null,
-        child: onTap != null
-            ? InkWell(onTap: onTap, child: cardBody)
-            : cardBody,
+        child:
+            onTap != null ? InkWell(onTap: onTap, child: cardBody) : cardBody,
       ),
     );
   }
@@ -565,9 +565,8 @@ class SyncStatusCard extends StatelessWidget {
             ],
           ),
         ),
-        crossFadeState: isSyncing
-            ? CrossFadeState.showSecond
-            : CrossFadeState.showFirst,
+        crossFadeState:
+            isSyncing ? CrossFadeState.showSecond : CrossFadeState.showFirst,
       ),
     );
   }
@@ -611,7 +610,8 @@ class ThemeModeSwitchCard extends StatelessWidget {
       builder: (context, constraints) {
         final bool showLabels = constraints.maxWidth > 520;
         return Card(
-          margin: margin ?? const EdgeInsets.symmetric(horizontal: 15, vertical: 2),
+          margin:
+              margin ?? const EdgeInsets.symmetric(horizontal: 15, vertical: 2),
           elevation: 3,
           color: scheme.surfaceContainer,
           surfaceTintColor: scheme.primary,
@@ -800,10 +800,12 @@ class _LogViewerListState extends State<LogViewerList> {
                 (entry['type']?.toString() ?? 'info').toLowerCase();
             final String thread = entry['thread']?.toString() ?? 'app';
             final String message = entry['message']?.toString() ?? '';
-            final int count = (entry['count'] is int) ? entry['count'] as int : 1;
+            final int count =
+                (entry['count'] is int) ? entry['count'] as int : 1;
             final String timeStr = _formatTimestamp(entry['time']);
             final Color color = _badgeColor(type, scheme);
-            final String fullLine = '$timeStr - [$thread] $type: $message${count > 1 ? ' (x$count)' : ''}';
+            final String fullLine =
+                '$timeStr - [$thread] $type: $message${count > 1 ? ' (x$count)' : ''}';
 
             return InkWell(
               onTap: () {
@@ -882,7 +884,7 @@ class _LogViewerListState extends State<LogViewerList> {
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                   child: Text(
-                                    '×$count',
+                                    'Г—$count',
                                     style: TextStyle(
                                       fontSize: 10,
                                       fontWeight: FontWeight.bold,

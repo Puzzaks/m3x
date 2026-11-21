@@ -1,3 +1,4 @@
+// ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 
 /// Data model representing a documentation file in the repository root.
@@ -161,7 +162,9 @@ class GitHubRelease {
   final String publishedAt;
   final String body;
   final String htmlUrl;
-  final List<({String name, int sizeBytes, String downloadUrl, int downloadCount})> assets;
+  final List<
+          ({String name, int sizeBytes, String downloadUrl, int downloadCount})>
+      assets;
 
   const GitHubRelease({
     required this.name,

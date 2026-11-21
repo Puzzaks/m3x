@@ -37,7 +37,8 @@ repository: https://github.com/Puzzaks/demo
       M3x.parsePubspec(yaml);
 
       expect(M3x.appName, 'demo');
-      expect(M3x.appDescription, 'UI and library testing and updating playground for apps by Puzzak');
+      expect(M3x.appDescription,
+          'UI and library testing and updating playground for apps by Puzzak');
       expect(M3x.appVersion, '1.2.9');
       expect(M3x.appBuildNumber, '26110502');
       expect(M3x.appBuildDate, 'Nov 5, 2026 (rev 02)');
@@ -94,7 +95,9 @@ version: 1.0.0+26051501
       expect(M3xGitHubService.instance.owner, equals('Puzzaks'));
     });
 
-    test('parsePubspec extracts single-line and multi-line dependencies and syncs SettingsBentoHeader', () {
+    test(
+        'parsePubspec extracts single-line and multi-line dependencies and syncs SettingsBentoHeader',
+        () {
       const yaml = '''
 name: geminilocal
 description: "Local AI, on-device client"
@@ -144,7 +147,9 @@ dev_dependencies:
       );
     });
 
-    test('M3x.init populates SettingsBentoHeader defaultChangelogContent and defaultVersionDisplay', () async {
+    test(
+        'M3x.init populates SettingsBentoHeader defaultChangelogContent and defaultVersionDisplay',
+        () async {
       TestWidgetsFlutterBinding.ensureInitialized();
       final bundle = _TestAssetBundle({
         'pubspec.yaml': '''

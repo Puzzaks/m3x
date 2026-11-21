@@ -84,7 +84,9 @@ class M3xToolCall {
     } else if (rawParams is String && rawParams.isNotEmpty) {
       try {
         final decoded = jsonDecode(rawParams);
-        parsedArguments = decoded is Map ? Map<String, dynamic>.from(decoded) : <String, dynamic>{};
+        parsedArguments = decoded is Map
+            ? Map<String, dynamic>.from(decoded)
+            : <String, dynamic>{};
       } catch (_) {
         parsedArguments = <String, dynamic>{};
       }
@@ -125,7 +127,8 @@ class M3xToolCall {
         '';
     final targetApp = json['app']?.toString();
     final desc = json['description']?.toString();
-    final idStr = json['id']?.toString() ?? DateTime.now().microsecondsSinceEpoch.toString();
+    final idStr = json['id']?.toString() ??
+        DateTime.now().microsecondsSinceEpoch.toString();
 
     return M3xToolCall(
       id: idStr,
@@ -147,7 +150,8 @@ class M3xToolCall {
       };
 
   @override
-  String toString() => 'M3xToolCall(id: $id, app: $app, name: $name, args: $arguments)';
+  String toString() =>
+      'M3xToolCall(id: $id, app: $app, name: $name, args: $arguments)';
 }
 
 /// Represents the structured result of a tool invocation.

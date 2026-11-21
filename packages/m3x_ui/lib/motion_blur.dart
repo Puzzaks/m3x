@@ -1,4 +1,5 @@
 import 'dart:ui' show ImageFilter;
+// ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
@@ -55,7 +56,8 @@ class _MotionBlurContainerState extends State<MotionBlurContainer>
   double _lastPixels = 0.0;
   double _currentBlur = 0.0;
   double _targetBlur = 0.0;
-  double _velocityDirection = 1.0; // 1.0 = scrolling forward/down, -1.0 = scrolling back/up
+  double _velocityDirection =
+      1.0; // 1.0 = scrolling forward/down, -1.0 = scrolling back/up
 
   @override
   void initState() {
@@ -82,7 +84,8 @@ class _MotionBlurContainerState extends State<MotionBlurContainer>
         widget.listenToAncestor ? Scrollable.maybeOf(context)?.position : null;
     if (newPosition != _scrollPosition) {
       _scrollPosition?.removeListener(_onScrollPositionChanged);
-      _scrollPosition?.isScrollingNotifier.removeListener(_onIsScrollingChanged);
+      _scrollPosition?.isScrollingNotifier
+          .removeListener(_onIsScrollingChanged);
       _scrollPosition = newPosition;
       _scrollPosition?.addListener(_onScrollPositionChanged);
       _scrollPosition?.isScrollingNotifier.addListener(_onIsScrollingChanged);
@@ -204,7 +207,8 @@ class _MotionBlurContainerState extends State<MotionBlurContainer>
         valueListenable: _sigmaNotifier,
         builder: (context, sigma, child) {
           final bool isBlurring = sigma >= 0.15;
-          final double sigmaX = widget.direction == Axis.horizontal ? sigma : 0.0;
+          final double sigmaX =
+              widget.direction == Axis.horizontal ? sigma : 0.0;
           final double sigmaY = widget.direction == Axis.vertical ? sigma : 0.0;
 
           // Directional trailing streak: shifts blurred texture slightly behind motion vector

@@ -16,14 +16,14 @@ Every package in this monorepo is designed to stay focused, dependency-light, an
 
 | Package | Version | Pub Status | Description |
 | :--- | :---: | :---: | :--- |
-| **[`m3x_ui`](packages/m3x_ui)** | `0.1.2` | Leaf (0 third-party deps) | Pure-Flutter Material 3 eXtended widgets: segmented `CardGroup`, `CardContents`, `SettingsBentoHeader`, adaptive scaffolds (`SliverPageScaffold`, `AdaptiveNavScaffold`, `M3xAdaptiveMasterDetail`, `M3xAdaptiveSplitHero`, `M3xAdaptiveContentFrame`), pickers, onboarding, telemetry cards, and `MotionBlurContainer`. |
-| **[`m3x_core`](packages/m3x_core)** | `0.0.2` | Leaf (0 third-party deps) | Shared core utilities: consecutive-deduplicating `AnalyticsService` logger and `M3xFormatters` (bytes, throughput, durations). |
-| **[`m3x_dict`](packages/m3x_dict)** | `0.0.3` | Leaf (`http` only) | Standalone 3-tier JSON localization engine (`Dictionary`, `DictionaryStorage`) with bundled assets, local cache overlay, and non-blocking SWR remote HTTP refresh. |
-| **[`m3x_chat`](packages/m3x_chat)** | `0.2.4` | Complication (`m3x_ui`) | AI/assistant chat UI: `ChatMessage`, `ChatBubbleList`, `ChatMessageBubble`, `ChatAnimatedSkeleton`, `ChatThoughtsBlock` with live-stream auto-scroll, and `flutter_markdown_plus` rendering. |
-| **[`m3x_gh`](packages/m3x_gh)** | `0.0.2` | Complication (`m3x_ui`, `m3x_core`) | Standalone GitHub Repository Explorer (root Markdown doc tabs, Issues & comments, Releases with asset downloads, Security Advisories, and PAT auth). |
-| **[`m3x_mesh`](packages/m3x_mesh)** | `1.1.7` | Android Plugin (`m3x_core`) | Inter-App Agentic Mesh Protocol over Android `ContentProvider` IPC, headless native Kotlin tool calling, MCP-compatible tool schemas, and Gemma/JSON tool-call parsing. |
-| **[`m3x_storage`](packages/m3x_storage)** | `0.0.2` | Middleware (`m3x_core`, `m3x_dict`) | Opinionated Hive persistence middleware with type-safe primitive accessors, chat history helpers, and `asDictionaryStorage()` adapter. |
-| **[`m3x`](packages/m3x)** | `0.0.6` | Umbrella | Re-exports all 7 packages and provides `M3x.init()` to auto-derive app identity, version dates, dependencies, native launcher icons, storage box names, and GitHub coordinates from `pubspec.yaml`. |
+| **[`m3x_ui`](packages/m3x_ui)** | `0.1.3` | Leaf (0 third-party deps) | Pure-Flutter Material 3 eXtended widgets: segmented `CardGroup`, `CardContents`, `SettingsBentoHeader`, adaptive scaffolds (`SliverPageScaffold`, `AdaptiveNavScaffold`, `M3xAdaptiveMasterDetail`, `M3xAdaptiveSplitHero`, `M3xAdaptiveContentFrame`), pickers, onboarding, telemetry cards, and `MotionBlurContainer`. |
+| **[`m3x_core`](packages/m3x_core)** | `0.0.3` | Leaf (0 third-party deps) | Shared core utilities: consecutive-deduplicating `AnalyticsService` logger and `M3xFormatters` (bytes, throughput, durations). |
+| **[`m3x_dict`](packages/m3x_dict)** | `0.0.4` | Leaf (`http` only) | Standalone 3-tier JSON localization engine (`Dictionary`, `DictionaryStorage`) with bundled assets, local cache overlay, and non-blocking SWR remote HTTP refresh. |
+| **[`m3x_chat`](packages/m3x_chat)** | `0.2.5` | Complication (`m3x_ui`) | AI/assistant chat UI: `ChatMessage`, `ChatBubbleList`, `ChatMessageBubble`, `ChatAnimatedSkeleton`, `ChatThoughtsBlock` with live-stream auto-scroll, and `flutter_markdown_plus` rendering. |
+| **[`m3x_gh`](packages/m3x_gh)** | `0.0.3` | Complication (`m3x_ui`, `m3x_core`) | Standalone GitHub Repository Explorer (root Markdown doc tabs, Issues & comments, Releases with asset downloads, Security Advisories, and PAT auth). |
+| **[`m3x_mesh`](packages/m3x_mesh)** | `1.1.8` | Android Plugin (`m3x_core`) | Inter-App Agentic Mesh Protocol over Android `ContentProvider` IPC, headless native Kotlin tool calling, MCP-compatible tool schemas, and Gemma/JSON tool-call parsing. |
+| **[`m3x_storage`](packages/m3x_storage)** | `0.0.3` | Middleware (`m3x_core`, `m3x_dict`) | Opinionated Hive persistence middleware with type-safe primitive accessors, chat history helpers, and `asDictionaryStorage()` adapter. |
+| **[`m3x`](packages/m3x)** | `0.0.7` | Umbrella | Re-exports all 7 packages and provides `M3x.init()` to auto-derive app identity, version dates, dependencies, native launcher icons, storage box names, and GitHub coordinates from `pubspec.yaml`. |
 
 ---
 

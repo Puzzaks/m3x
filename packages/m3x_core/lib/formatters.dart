@@ -38,9 +38,8 @@ class PuzzakFormatters {
       value *= 8.0;
     }
 
-    final List<String> units = useBits
-        ? (isThroughput ? _bitUnits : _rawBitUnits)
-        : _byteUnits;
+    final List<String> units =
+        useBits ? (isThroughput ? _bitUnits : _rawBitUnits) : _byteUnits;
     final String suffix = (!useBits && isThroughput) ? '/s' : '';
 
     if (value == 0) {
@@ -148,4 +147,3 @@ String formatDuration(Duration d, {bool includeSeconds = true}) =>
 
 /// Modern alias for [PuzzakFormatters] under the M3x brand.
 typedef M3xFormatters = PuzzakFormatters;
-

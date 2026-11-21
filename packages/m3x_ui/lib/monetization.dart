@@ -1,3 +1,4 @@
+// ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'elements.dart';
 
@@ -44,10 +45,8 @@ class SubscriptionTierCard extends StatelessWidget {
     final radius = borderRadius ?? BorderRadius.circular(20);
 
     return Card(
-      margin:
-          margin ?? const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      color:
-          isFeatured ? scheme.surfaceContainerHigh : scheme.surfaceContainer,
+      margin: margin ?? const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      color: isFeatured ? scheme.surfaceContainerHigh : scheme.surfaceContainer,
       surfaceTintColor: isFeatured ? scheme.primary : null,
       shape: RoundedRectangleBorder(
         borderRadius: radius,

@@ -8,13 +8,13 @@ Re-exports all modular `m3x_*` packages and provides `M3x.init()` to automatical
 
 ## Included Packages
 
-- **[`m3x_ui`](https://github.com/Puzzaks/m3x/tree/main/packages/m3x_ui)** — Pure-Flutter Material 3 eXtended widgets, segmented `CardGroup`s, adaptive scaffolds, pickers, onboarding, telemetry, and `MotionBlurContainer`.
-- **[`m3x_core`](https://github.com/Puzzaks/m3x/tree/main/packages/m3x_core)** — Deduplicating `AnalyticsService` logger and `M3xFormatters` (bytes, throughput, durations).
-- **[`m3x_dict`](https://github.com/Puzzaks/m3x/tree/main/packages/m3x_dict)** — Standalone 3-tier JSON localization engine (`Dictionary`, `DictionaryStorage`).
-- **[`m3x_chat`](https://github.com/Puzzaks/m3x/tree/main/packages/m3x_chat)** — AI/assistant chat bubbles, reasoning blocks (`ChatThoughtsBlock`), loading skeletons, and Markdown rendering.
-- **[`m3x_gh`](https://github.com/Puzzaks/m3x/tree/main/packages/m3x_gh)** — Standalone GitHub repository explorer (Docs, Issues, Releases, Security Advisories, PAT auth).
-- **[`m3x_mesh`](https://github.com/Puzzaks/m3x/tree/main/packages/m3x_mesh)** — Inter-App Agentic Mesh Protocol (Android `ContentProvider` IPC, headless Kotlin tool calling, MCP-compatible tool schemas).
-- **[`m3x_storage`](https://github.com/Puzzaks/m3x/tree/main/packages/m3x_storage)** — Opinionated Hive persistence middleware with chat history caching and `DictionaryStorage` adapters.
+- **[`m3x_ui`](https://pub.dev/packages/m3x_ui)** — Pure-Flutter Material 3 eXtended widgets, segmented `CardGroup`s, adaptive scaffolds, pickers, onboarding, telemetry, and `MotionBlurContainer`.
+- **[`m3x_core`](https://pub.dev/packages/m3x_core)** — Deduplicating `AnalyticsService` logger and `M3xFormatters` (bytes, throughput, durations).
+- **[`m3x_dict`](https://pub.dev/packages/m3x_dict)** — Standalone 3-tier JSON localization engine (`Dictionary`, `DictionaryStorage`).
+- **[`m3x_chat`](https://pub.dev/packages/m3x_chat)** — AI/assistant chat bubbles, reasoning blocks (`ChatThoughtsBlock`), loading skeletons, and Markdown rendering.
+- **[`m3x_gh`](https://pub.dev/packages/m3x_gh)** — Standalone GitHub repository explorer (Docs, Issues, Releases, Security Advisories, PAT auth).
+- **[`m3x_mesh`](https://pub.dev/packages/m3x_mesh)** — Inter-App Agentic Mesh Protocol (Android `ContentProvider` IPC, headless Kotlin tool calling, MCP-compatible tool schemas).
+- **[`m3x_storage`](https://pub.dev/packages/m3x_storage)** — Opinionated Hive persistence middleware with chat history caching and `DictionaryStorage` adapters.
 
 ## Quick Start
 

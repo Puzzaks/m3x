@@ -360,11 +360,10 @@ class Dictionary {
                   final String dictBody = utf8.decode(res.bodyBytes);
                   final dynamic decodedDict = jsonDecode(dictBody);
                   if (decodedDict is Map) {
-                    final Map<String, dynamic> current =
-                        dictionary[langId] is Map
-                            ? Map<String, dynamic>.from(
-                                dictionary[langId] as Map)
-                            : <String, dynamic>{};
+                    final Map<String, dynamic> current = dictionary[langId]
+                            is Map
+                        ? Map<String, dynamic>.from(dictionary[langId] as Map)
+                        : <String, dynamic>{};
                     current.addAll(Map<String, dynamic>.from(decodedDict));
                     dictionary[langId] = current;
                     await storage.put("cached_dict_$langId", dictBody);

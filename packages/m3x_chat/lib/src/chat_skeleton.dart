@@ -1,4 +1,5 @@
 import 'dart:math' as math;
+// ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 
 /// Pure-Flutter animated Material 3 skeleton shimmer block for loading or

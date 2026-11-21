@@ -1,3 +1,4 @@
+// ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'elements.dart';
@@ -45,12 +46,10 @@ class SettingsBentoHeader extends StatelessWidget {
   }) {
     final String effectiveTitle =
         (title != null && title.trim().isNotEmpty) ? title.trim() : 'Changelog';
-    final String effectiveSubtitle =
-        (subtitle ?? defaultVersionDisplay).trim();
+    final String effectiveSubtitle = (subtitle ?? defaultVersionDisplay).trim();
     final String effectiveContent =
         (changelogContent ?? defaultChangelogContent).trim();
-    final String effectiveEmpty =
-        emptyMessage ?? 'No changelog available.';
+    final String effectiveEmpty = emptyMessage ?? 'No changelog available.';
 
     return showModalBottomSheet<void>(
       context: context,
@@ -671,9 +670,8 @@ class SettingsBentoHeader extends StatelessWidget {
               color: level == 3 ? scheme.onSurface : scheme.onSurfaceVariant,
             ),
         };
-        final double topPad = !hasPreceding
-            ? 2
-            : (level == 2 ? 16 : (level == 1 ? 14 : 10));
+        final double topPad =
+            !hasPreceding ? 2 : (level == 2 ? 16 : (level == 1 ? 14 : 10));
         widgets.add(
           Padding(
             padding: EdgeInsets.only(top: topPad, bottom: level <= 2 ? 6 : 4),
@@ -702,7 +700,7 @@ class SettingsBentoHeader extends StatelessWidget {
                 SizedBox(
                   width: 16,
                   child: Text(
-                    indent == 0 ? '•' : '◦',
+                    indent == 0 ? 'вЂў' : 'в—¦',
                     style: baseBodyStyle.copyWith(
                       fontWeight: FontWeight.w700,
                       color: scheme.primary,

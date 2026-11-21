@@ -1,10 +1,12 @@
+// ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:m3x_gh/m3x_gh.dart';
 
 void main() {
   group('Markdown Preprocessor', () {
-    test('preprocessGitHubMarkdown strips comments and transforms HTML tags', () {
+    test('preprocessGitHubMarkdown strips comments and transforms HTML tags',
+        () {
       const raw = '''
 <!-- Banner comment -->
 <div align="center">
@@ -19,7 +21,10 @@ void main() {
       expect(processed, contains('# Project Title'));
       expect(processed, contains('Subtitle with'));
       expect(processed, contains('& symbol'));
-      expect(processed, contains('[![Badge](https://example.com/badge.svg)](https://example.com)'));
+      expect(
+          processed,
+          contains(
+              '[![Badge](https://example.com/badge.svg)](https://example.com)'));
     });
   });
 
@@ -96,7 +101,8 @@ void main() {
   });
 
   group('M3xGitHub UI', () {
-    testWidgets('M3xGitHubExplorerPage renders basic structure and tabs', (tester) async {
+    testWidgets('M3xGitHubExplorerPage renders basic structure and tabs',
+        (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: M3xGitHubExplorerPage(

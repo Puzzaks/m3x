@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+// ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:m3x_chat/m3x_chat.dart';
@@ -7,19 +8,78 @@ import 'package:m3x_ui/motion_blur.dart';
 
 void main() {
   final Uint8List png1x1 = Uint8List.fromList(<int>[
-    0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A,
-    0x00, 0x00, 0x00, 0x0D, 0x49, 0x48, 0x44, 0x52,
-    0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x01,
-    0x08, 0x06, 0x00, 0x00, 0x00, 0x1F, 0x15, 0xC4,
-    0x89, 0x00, 0x00, 0x00, 0x0A, 0x49, 0x44, 0x41,
-    0x54, 0x78, 0x9C, 0x63, 0x00, 0x01, 0x00, 0x00,
-    0x05, 0x00, 0x01, 0x0D, 0x0A, 0x2D, 0xB4, 0x00,
-    0x00, 0x00, 0x00, 0x49, 0x45, 0x4E, 0x44, 0xAE,
-    0x42, 0x60, 0x82,
+    0x89,
+    0x50,
+    0x4E,
+    0x47,
+    0x0D,
+    0x0A,
+    0x1A,
+    0x0A,
+    0x00,
+    0x00,
+    0x00,
+    0x0D,
+    0x49,
+    0x48,
+    0x44,
+    0x52,
+    0x00,
+    0x00,
+    0x00,
+    0x01,
+    0x00,
+    0x00,
+    0x00,
+    0x01,
+    0x08,
+    0x06,
+    0x00,
+    0x00,
+    0x00,
+    0x1F,
+    0x15,
+    0xC4,
+    0x89,
+    0x00,
+    0x00,
+    0x00,
+    0x0A,
+    0x49,
+    0x44,
+    0x41,
+    0x54,
+    0x78,
+    0x9C,
+    0x63,
+    0x00,
+    0x01,
+    0x00,
+    0x00,
+    0x05,
+    0x00,
+    0x01,
+    0x0D,
+    0x0A,
+    0x2D,
+    0xB4,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x49,
+    0x45,
+    0x4E,
+    0x44,
+    0xAE,
+    0x42,
+    0x60,
+    0x82,
   ]);
 
   group('ChatMessage Schema & Legacy Serialization', () {
-    test('supports standardized metadata, copyWith, toLegacyMap, and toJson', () {
+    test('supports standardized metadata, copyWith, toLegacyMap, and toJson',
+        () {
       final now = DateTime.utc(2026, 11, 15, 14, 32, 5);
       final msg = ChatMessage(
         sender: 'Gemini',
@@ -29,7 +89,7 @@ void main() {
         timestamp: now,
         thoughts: 'Step 1: analyze prompt.',
         isLoading: true,
-        loadingLabel: 'Continuing response…',
+        loadingLabel: 'Continuing responseвЂ¦',
         isThinkingStreaming: true,
         avatarIcon: Icons.auto_awesome_rounded,
         avatarText: 'GN',
@@ -41,7 +101,7 @@ void main() {
       expect(msg.hasThoughts, isTrue);
       expect(msg.hasAvatar, isTrue);
       expect(msg.isLoading, isTrue);
-      expect(msg.loadingLabel, 'Continuing response…');
+      expect(msg.loadingLabel, 'Continuing responseвЂ¦');
       expect(msg.isThinkingStreaming, isTrue);
 
       final updated = msg.copyWith(
@@ -60,7 +120,7 @@ void main() {
       expect(legacy['time'], now.millisecondsSinceEpoch.toString());
       expect(legacy['thoughts'], 'Step 1: analyze prompt.');
       expect(legacy['isLoading'], 'true');
-      expect(legacy['loadingLabel'], 'Continuing response…');
+      expect(legacy['loadingLabel'], 'Continuing responseвЂ¦');
 
       final Map<String, dynamic> json = msg.toJson();
       expect(json['sender'], 'Gemini');
@@ -69,8 +129,11 @@ void main() {
       expect(json['isLoading'], isTrue);
     });
 
-    test('fromLegacyMap parses thoughtProcess, thoughts, author, and time formats', () {
-      final epochMs = DateTime.utc(2026, 11, 15, 10, 20, 30).millisecondsSinceEpoch;
+    test(
+        'fromLegacyMap parses thoughtProcess, thoughts, author, and time formats',
+        () {
+      final epochMs =
+          DateTime.utc(2026, 11, 15, 10, 20, 30).millisecondsSinceEpoch;
 
       final fromInt = ChatMessage.fromLegacyMap({
         'user': 'Gemini',
@@ -79,14 +142,14 @@ void main() {
         'thoughtProcess': 'Reasoning via thoughtProcess',
         'time': epochMs,
         'isLoading': true,
-        'loadingLabel': 'Generating…',
+        'loadingLabel': 'GeneratingвЂ¦',
       });
       expect(fromInt.isUser, isFalse);
       expect(fromInt.displayAuthor, 'Gemini Nano v4');
       expect(fromInt.thoughts, 'Reasoning via thoughtProcess');
       expect(fromInt.timestamp?.millisecondsSinceEpoch, epochMs);
       expect(fromInt.isLoading, isTrue);
-      expect(fromInt.loadingLabel, 'Generating…');
+      expect(fromInt.loadingLabel, 'GeneratingвЂ¦');
 
       final fromNumericString = ChatMessage.fromLegacyMap({
         'user': 'User',
@@ -109,13 +172,15 @@ void main() {
   });
 
   group('ChatAnimatedSkeleton & Loading Transitions', () {
-    testWidgets('renders skeleton while loading and animates out when isLoading becomes false', (WidgetTester tester) async {
+    testWidgets(
+        'renders skeleton while loading and animates out when isLoading becomes false',
+        (WidgetTester tester) async {
       ChatMessage currentMsg = const ChatMessage(
         sender: 'Gemini',
         message: '',
         isUser: false,
         isLoading: true,
-        loadingLabel: 'Continuing response…',
+        loadingLabel: 'Continuing responseвЂ¦',
       );
 
       late StateSetter outerSetState;
@@ -137,7 +202,7 @@ void main() {
 
       await tester.pump(const Duration(milliseconds: 120));
       expect(find.byType(ChatAnimatedSkeleton), findsOneWidget);
-      expect(find.text('Continuing response…'), findsOneWidget);
+      expect(find.text('Continuing responseвЂ¦'), findsOneWidget);
 
       // Transition to streaming text + forward skeleton
       outerSetState(() {
@@ -164,7 +229,8 @@ void main() {
   });
 
   group('ChatMessageBubble Metadata Tap-to-Reveal & Avatars', () {
-    testWidgets('tapping bubble reveals and hides author + formatted timestamp', (WidgetTester tester) async {
+    testWidgets('tapping bubble reveals and hides author + formatted timestamp',
+        (WidgetTester tester) async {
       final ts = DateTime(2026, 11, 15, 14, 32, 5);
       final expectedFormatted = ChatMessageBubble.formatDefaultTimestamp(
         ts,
@@ -196,7 +262,7 @@ void main() {
         ),
       );
 
-      expect(find.text('Gemini Nano v4  •  14:32:05'), findsNothing);
+      expect(find.text('Gemini Nano v4  вЂў  14:32:05'), findsNothing);
 
       final Finder bubbleCardFinder = find.descendant(
         of: find.byType(ChatMessageBubble),
@@ -204,14 +270,16 @@ void main() {
       );
       await tester.tap(bubbleCardFinder);
       await tester.pumpAndSettle();
-      expect(find.text('Gemini Nano v4  •  14:32:05'), findsOneWidget);
+      expect(find.text('Gemini Nano v4  вЂў  14:32:05'), findsOneWidget);
 
       await tester.tap(bubbleCardFinder);
       await tester.pumpAndSettle();
-      expect(find.text('Gemini Nano v4  •  14:32:05'), findsNothing);
+      expect(find.text('Gemini Nano v4  вЂў  14:32:05'), findsNothing);
     });
 
-    testWidgets('showAvatar true renders CircleAvatar and showAvatar false omits it', (WidgetTester tester) async {
+    testWidgets(
+        'showAvatar true renders CircleAvatar and showAvatar false omits it',
+        (WidgetTester tester) async {
       final msgs = <ChatMessage>[
         const ChatMessage(
           sender: 'User',
@@ -256,7 +324,9 @@ void main() {
   });
 
   group('ChatThoughtsBlock & Responsive 320x480 Layout', () {
-    testWidgets('thoughts auto-expand while streaming, auto-collapse when text arrives, and toggle manually', (WidgetTester tester) async {
+    testWidgets(
+        'thoughts auto-expand while streaming, auto-collapse when text arrives, and toggle manually',
+        (WidgetTester tester) async {
       ChatMessage msg = const ChatMessage(
         sender: 'Gemini',
         message: '',
@@ -274,7 +344,7 @@ void main() {
                 outerSetState = setState;
                 return ChatMessageBubble(
                   message: msg,
-                  thinkingInProgressLabel: 'Thinking…',
+                  thinkingInProgressLabel: 'ThinkingвЂ¦',
                   thoughtProcessLabel: 'Thought Process',
                 );
               },
@@ -284,7 +354,7 @@ void main() {
       );
 
       await tester.pump(const Duration(milliseconds: 100));
-      expect(find.text('Thinking…'), findsOneWidget);
+      expect(find.text('ThinkingвЂ¦'), findsOneWidget);
       expect(
         find.text('Evaluating board state and available moves.'),
         findsOneWidget,
@@ -313,7 +383,9 @@ void main() {
       );
     });
 
-    testWidgets('renders zero overflows at 320x480 with avatars, thoughts, customContent, and loading skeleton', (WidgetTester tester) async {
+    testWidgets(
+        'renders zero overflows at 320x480 with avatars, thoughts, customContent, and loading skeleton',
+        (WidgetTester tester) async {
       tester.view.physicalSize = const Size(320, 480);
       tester.view.devicePixelRatio = 1.0;
       addTearDown(tester.view.resetPhysicalSize);
@@ -331,7 +403,8 @@ void main() {
                   ChatMessage(
                     sender: 'User',
                     author: 'Puzzak',
-                    message: 'Very long prompt message to verify narrow 320px bubble wrapping.',
+                    message:
+                        'Very long prompt message to verify narrow 320px bubble wrapping.',
                     isUser: true,
                     timestamp: DateTime(2026, 11, 15, 14, 30, 0),
                   ),
@@ -341,7 +414,7 @@ void main() {
                     message: 'Streaming response on narrow screen.',
                     thoughts: 'Checking constraints on 320x480 viewport.',
                     isLoading: true,
-                    loadingLabel: 'Continuing response…',
+                    loadingLabel: 'Continuing responseвЂ¦',
                     isUser: false,
                     timestamp: DateTime(2026, 11, 15, 14, 30, 5),
                     avatarIcon: Icons.auto_awesome_rounded,
@@ -365,7 +438,9 @@ void main() {
   });
 
   group('Bubble Shrink-Wrapping & Nested Scroll Blur Isolation', () {
-    testWidgets('short user ("Hi") and AI ("OK") bubbles shrink-wrap well below maxBubbleWidth', (WidgetTester tester) async {
+    testWidgets(
+        'short user ("Hi") and AI ("OK") bubbles shrink-wrap well below maxBubbleWidth',
+        (WidgetTester tester) async {
       const double maxBubbleWidth = 320.0;
       const Key userKey = ValueKey<String>('user-short');
       const Key aiKey = ValueKey<String>('ai-short');
@@ -407,17 +482,21 @@ void main() {
       await tester.pumpAndSettle();
 
       final double userCardWidth = tester
-          .getSize(find.descendant(of: find.byKey(userKey), matching: find.byType(Card)))
+          .getSize(find.descendant(
+              of: find.byKey(userKey), matching: find.byType(Card)))
           .width;
       final double aiCardWidth = tester
-          .getSize(find.descendant(of: find.byKey(aiKey), matching: find.byType(Card)))
+          .getSize(find.descendant(
+              of: find.byKey(aiKey), matching: find.byType(Card)))
           .width;
 
       expect(userCardWidth, lessThan(maxBubbleWidth * 0.6));
       expect(aiCardWidth, lessThan(maxBubbleWidth * 0.6));
     });
 
-    testWidgets('isLoading true -> false animates out cleanly and shrinks short bubble back down', (WidgetTester tester) async {
+    testWidgets(
+        'isLoading true -> false animates out cleanly and shrinks short bubble back down',
+        (WidgetTester tester) async {
       const double maxBubbleWidth = 320.0;
       const Key aiKey = ValueKey<String>('ai-loading-shrink');
       ChatMessage msg = const ChatMessage(
@@ -425,7 +504,7 @@ void main() {
         message: 'OK',
         isUser: false,
         isLoading: true,
-        loadingLabel: 'Thinking…',
+        loadingLabel: 'ThinkingвЂ¦',
       );
 
       late StateSetter outerSetState;
@@ -464,17 +543,22 @@ void main() {
       expect(find.byType(ChatAnimatedSkeleton), findsNothing);
 
       final double aiCardWidth = tester
-          .getSize(find.descendant(of: find.byKey(aiKey), matching: find.byType(Card)))
+          .getSize(find.descendant(
+              of: find.byKey(aiKey), matching: find.byType(Card)))
           .width;
       expect(aiCardWidth, lessThan(maxBubbleWidth * 0.6));
     });
 
-    testWidgets('scrolling inside ChatThoughtsBlock triggers zero blur on parent MotionBlurContainer', (WidgetTester tester) async {
+    testWidgets(
+        'scrolling inside ChatThoughtsBlock triggers zero blur on parent MotionBlurContainer',
+        (WidgetTester tester) async {
       const Key parentBlurKey = ValueKey<String>('parent-motion-blur');
-      final List<ScrollNotification> leakedNotifications = <ScrollNotification>[];
+      final List<ScrollNotification> leakedNotifications =
+          <ScrollNotification>[];
       final String longThoughts = List<String>.generate(
         40,
-        (i) => 'Thought line $i: evaluating token probabilities and tool state.',
+        (i) =>
+            'Thought line $i: evaluating token probabilities and tool state.',
       ).join('\n');
 
       await tester.pumpWidget(
@@ -537,7 +621,9 @@ void main() {
       expect(leakedNotifications, isEmpty);
     });
 
-    testWidgets('short AI bubble ("Paris") with collapsed ChatThoughtsBlock shrink-wraps < maxBubbleWidth * 0.65 and expands on tap', (WidgetTester tester) async {
+    testWidgets(
+        'short AI bubble ("Paris") with collapsed ChatThoughtsBlock shrink-wraps < maxBubbleWidth * 0.65 and expands on tap',
+        (WidgetTester tester) async {
       const double maxBubbleWidth = 480.0;
       const Key aiKey = ValueKey<String>('ai-short-with-thoughts');
 
@@ -712,7 +798,8 @@ void main() {
 
       // New streamed thoughts arrive -> offset stays paused for reading
       outerSetState(() {
-        thoughts = '$thoughts\nNew line A: should not yank user scroll.\nNew line B: still reading.';
+        thoughts =
+            '$thoughts\nNew line A: should not yank user scroll.\nNew line B: still reading.';
       });
       await tester.pump();
 

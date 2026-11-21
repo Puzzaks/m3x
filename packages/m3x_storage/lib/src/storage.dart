@@ -50,9 +50,8 @@ class M3xStorage {
       return;
     }
 
-    final effectiveBoxName = (boxName != null && boxName.isNotEmpty)
-        ? boxName
-        : defaultBoxName;
+    final effectiveBoxName =
+        (boxName != null && boxName.isNotEmpty) ? boxName : defaultBoxName;
 
     if (storagePath != null && storagePath.isNotEmpty) {
       Hive.init(storagePath);
@@ -157,7 +156,8 @@ class M3xStorage {
   // ==========================================
 
   /// Appends a chat message to the history list for [chatId].
-  Future<void> saveChatMessage(String chatId, Map<String, dynamic> message) async {
+  Future<void> saveChatMessage(
+      String chatId, Map<String, dynamic> message) async {
     final key = 'chat_$chatId';
     final existing = getChatMessages(chatId);
     final updated = List<Map<String, dynamic>>.from(existing)..add(message);

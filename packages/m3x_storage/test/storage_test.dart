@@ -26,7 +26,8 @@ void main() {
   group('M3xStorage Primitives', () {
     test('getString & setString', () async {
       expect(storage.getString('theme_mode'), isNull);
-      expect(storage.getString('theme_mode', defaultValue: 'system'), equals('system'));
+      expect(storage.getString('theme_mode', defaultValue: 'system'),
+          equals('system'));
 
       await storage.setString('theme_mode', 'dark');
       expect(storage.getString('theme_mode'), equals('dark'));
@@ -34,7 +35,8 @@ void main() {
 
     test('getBool & setBool with string parsing support', () async {
       expect(storage.getBool('notifications_enabled'), isNull);
-      expect(storage.getBool('notifications_enabled', defaultValue: true), isTrue);
+      expect(
+          storage.getBool('notifications_enabled', defaultValue: true), isTrue);
 
       await storage.setBool('notifications_enabled', false);
       expect(storage.getBool('notifications_enabled'), isFalse);
@@ -132,7 +134,8 @@ void main() {
       expect(storage.containsKey('language'), isFalse);
     });
 
-    test('Dictionary reads language preference saved through M3xStorage', () async {
+    test('Dictionary reads language preference saved through M3xStorage',
+        () async {
       await storage.setString('language', 'uk');
 
       final dict = Dictionary(

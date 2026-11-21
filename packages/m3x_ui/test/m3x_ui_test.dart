@@ -1,3 +1,4 @@
+// ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:m3x_ui/m3x_ui.dart';
@@ -29,7 +30,8 @@ Widget _wrapWithMaterial3(Widget child, {double? width}) {
 
 void main() {
   group('Cards & CardGroup segmentation', () {
-    testWidgets('borderRadiusForIndex assigns outer and inner radii accurately', (tester) async {
+    testWidgets('borderRadiusForIndex assigns outer and inner radii accurately',
+        (tester) async {
       late Cards cards;
       await tester.pumpWidget(
         MaterialApp(
@@ -61,7 +63,9 @@ void main() {
       expect(lastRadius.bottomRight, equals(const Radius.circular(20)));
     });
 
-    testWidgets('CardGroup renders single-column and multi-column layouts without error', (tester) async {
+    testWidgets(
+        'CardGroup renders single-column and multi-column layouts without error',
+        (tester) async {
       await tester.pumpWidget(
         _wrapWithMaterial3(
           Column(
@@ -76,7 +80,8 @@ void main() {
                 columns: 2,
                 leadingCardWide: true,
                 children: [
-                  CardContents.static(title: 'Bento Top', subtitle: 'Full width'),
+                  CardContents.static(
+                      title: 'Bento Top', subtitle: 'Full width'),
                   CardContents.static(title: 'Bento Left', subtitle: 'Col 1'),
                   CardContents.static(title: 'Bento Right', subtitle: 'Col 2'),
                 ],
@@ -96,7 +101,9 @@ void main() {
   });
 
   group('CardContents, Category, and TextPart interactions', () {
-    testWidgets('CardContents.tap and CardContents.turn handle taps and switch toggles', (tester) async {
+    testWidgets(
+        'CardContents.tap and CardContents.turn handle taps and switch toggles',
+        (tester) async {
       int tapCount = 0;
       bool switchValue = false;
 
@@ -123,7 +130,8 @@ void main() {
                           title: 'Background Alerts',
                           subtitle: 'Notify when server goes offline',
                           value: switchValue,
-                          action: () => setState(() => switchValue = !switchValue),
+                          action: () =>
+                              setState(() => switchValue = !switchValue),
                           switcher: (val) => setState(() => switchValue = val),
                         ),
                       ],
@@ -145,7 +153,8 @@ void main() {
       expect(find.text('General Settings'), findsOneWidget);
       expect(find.text('Server Endpoint'), findsOneWidget);
       expect(find.text('Background Alerts'), findsOneWidget);
-      expect(find.text('All diagnostic logs remain strictly on-device.'), findsOneWidget);
+      expect(find.text('All diagnostic logs remain strictly on-device.'),
+          findsOneWidget);
 
       await tester.tap(find.text('Server Endpoint'));
       await tester.pumpAndSettle();
@@ -161,7 +170,8 @@ void main() {
     });
   });
 
-  group('Responsive wide and narrow LayoutBuilder constraints (no overflow)', () {
+  group('Responsive wide and narrow LayoutBuilder constraints (no overflow)',
+      () {
     for (final double constraintWidth in <double>[240.0, 320.0, 800.0]) {
       testWidgets(
         'renders CardGroup, CardContents.tap, CardContents.turn, Category.settings, and TextPart.info at ${constraintWidth.toInt()}px width without overflow',
@@ -174,21 +184,26 @@ void main() {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Category.settings(
-                      title: 'Long Section Category Title For Stress Testing Layout',
+                      title:
+                          'Long Section Category Title For Stress Testing Layout',
                       context: context,
                       trailing: const Icon(Icons.tune_rounded, size: 18),
                     ),
                     CardGroup(
                       children: [
                         CardContents.tap(
-                          title: 'Primary Endpoint Configuration With Long Title',
-                          subtitle: 'https://edge-node-01.puzzak.page/api/v2/telemetry/stream',
+                          title:
+                              'Primary Endpoint Configuration With Long Title',
+                          subtitle:
+                              'https://edge-node-01.puzzak.page/api/v2/telemetry/stream',
                           action: () {},
                           trailing: const Icon(Icons.chevron_right_rounded),
                         ),
                         CardContents.turn(
-                          title: 'Enable Real-Time High-Frequency Telemetry Polling',
-                          subtitle: 'Polls endpoint every 1000ms and deduplicates logs',
+                          title:
+                              'Enable Real-Time High-Frequency Telemetry Polling',
+                          subtitle:
+                              'Polls endpoint every 1000ms and deduplicates logs',
                           value: true,
                           action: () {},
                           switcher: (_) {},
@@ -202,7 +217,7 @@ void main() {
                         ),
                         CardContents.doubleTap(
                           title: 'Select Interface Language',
-                          subtitle: 'Ukrainian (Українська)',
+                          subtitle: 'Ukrainian (РЈРєСЂР°С—РЅСЃСЊРєР°)',
                           icon: Icons.restore_rounded,
                           action: () {},
                           secondAction: () {},
@@ -223,7 +238,8 @@ void main() {
                       ],
                     ),
                     TextPart.info(
-                      title: 'Telemetry requires AIO.php installed on your target host.',
+                      title:
+                          'Telemetry requires AIO.php installed on your target host.',
                       subtitle: 'Download AIO.php on GitHub',
                       action: () {},
                       context: context,

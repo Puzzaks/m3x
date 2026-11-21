@@ -1,4 +1,5 @@
 import 'dart:typed_data';
+// ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 
 /// Immutable chat message model for [ChatBubbleList] and [ChatMessageBubble].
@@ -123,10 +124,9 @@ class ChatMessage {
     final String sender = (map['user'] ?? map['sender'])?.toString() ?? '';
     final String msg = map['message']?.toString() ?? '';
     final String? rawAuthor = map['author']?.toString();
-    final String? author =
-        (rawAuthor != null && rawAuthor.trim().isNotEmpty)
-            ? rawAuthor.trim()
-            : null;
+    final String? author = (rawAuthor != null && rawAuthor.trim().isNotEmpty)
+        ? rawAuthor.trim()
+        : null;
     final DateTime? timestamp =
         _parseTimestamp(map['time'] ?? map['timestamp']);
     final String? rawThoughts =
@@ -142,16 +142,16 @@ class ChatMessage {
         (rawLoadingLabel != null && rawLoadingLabel.trim().isNotEmpty)
             ? rawLoadingLabel
             : null;
-    final bool isThinkingStreaming =
-        map['isThinkingStreaming'] == true ||
+    final bool isThinkingStreaming = map['isThinkingStreaming'] == true ||
         map['isThinkingStreaming']?.toString() == 'true';
     final String? rawAvatarText = map['avatarText']?.toString();
     final String? avatarText =
         (rawAvatarText != null && rawAvatarText.trim().isNotEmpty)
             ? rawAvatarText.trim()
             : null;
-    final Uint8List? avatarBytes =
-        map['avatarBytes'] is Uint8List ? map['avatarBytes'] as Uint8List : null;
+    final Uint8List? avatarBytes = map['avatarBytes'] is Uint8List
+        ? map['avatarBytes'] as Uint8List
+        : null;
     final IconData? avatarIcon =
         map['avatarIcon'] is IconData ? map['avatarIcon'] as IconData : null;
     final Color? avatarBg = map['avatarBackgroundColor'] is Color

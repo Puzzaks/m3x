@@ -8,7 +8,9 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   group('InMemoryDictionaryStorage & CallbackDictionaryStorage', () {
-    test('InMemoryDictionaryStorage supports get, put, delete, containsKey, and clear', () async {
+    test(
+        'InMemoryDictionaryStorage supports get, put, delete, containsKey, and clear',
+        () async {
       final storage = InMemoryDictionaryStorage({'initial': 'value'});
       expect(storage.containsKey('initial'), isTrue);
       expect(storage.get('initial'), equals('value'));
@@ -26,7 +28,8 @@ void main() {
       expect(storage.entries, isEmpty);
     });
 
-    test('CallbackDictionaryStorage delegates operations to provided callbacks', () async {
+    test('CallbackDictionaryStorage delegates operations to provided callbacks',
+        () async {
       final backingMap = <String, dynamic>{};
       final storage = CallbackDictionaryStorage(
         getFn: (key) => backingMap[key],
@@ -71,7 +74,8 @@ void main() {
       });
     });
 
-    test('setup() loads cached languages, dictionaries, and demoData', () async {
+    test('setup() loads cached languages, dictionaries, and demoData',
+        () async {
       final dict = Dictionary(
         path: 'assets/non_existent_test_path',
         demoDataPath: 'assets/non_existent_demo.json',
@@ -94,7 +98,9 @@ void main() {
       expect(dict.data('invalid.path'), isNull);
     });
 
-    test('value(key) falls back to English and key name in release and debug modes', () async {
+    test(
+        'value(key) falls back to English and key name in release and debug modes',
+        () async {
       final dictRelease = Dictionary(
         path: 'assets/non_existent_test_path',
         storage: storage,
@@ -106,7 +112,8 @@ void main() {
       expect(dictRelease.locale, equals('uk'));
       expect(dictRelease.value('app_title'), equals('Майданчик Puzzak'));
       expect(dictRelease.value('only_in_english'), equals('Fallback String'));
-      expect(dictRelease.value('completely_missing_key'), equals('completely_missing_key'));
+      expect(dictRelease.value('completely_missing_key'),
+          equals('completely_missing_key'));
 
       final dictDebug = Dictionary(
         path: 'assets/non_existent_test_path',
@@ -118,15 +125,20 @@ void main() {
 
       expect(dictDebug.value('app_title'), equals('Майданчик Puzzak'));
       expect(dictDebug.value('only_in_english'), equals('!Fallback String!'));
-      expect(dictDebug.value('completely_missing_key'), equals('!!! completely_missing_key'));
+      expect(dictDebug.value('completely_missing_key'),
+          equals('!!! completely_missing_key'));
     });
 
-    test('value(key) returns Loading... before dictionary is initialized for active locale', () {
+    test(
+        'value(key) returns Loading... before dictionary is initialized for active locale',
+        () {
       final uninitializedDict = Dictionary(path: 'assets/translations');
       expect(uninitializedDict.value('any_key'), equals('Loading...'));
     });
 
-    test('language switching persists to storage and setSystemLanguage resets to OS locale', () async {
+    test(
+        'language switching persists to storage and setSystemLanguage resets to OS locale',
+        () async {
       final dict = Dictionary(
         path: 'assets/non_existent_test_path',
         storage: storage,
@@ -163,7 +175,8 @@ void main() {
       expect(storage.containsKey('language'), isFalse);
     });
 
-    test('setSystemLanguage falls back to en when system locale is unsupported', () async {
+    test('setSystemLanguage falls back to en when system locale is unsupported',
+        () async {
       final dict = Dictionary(
         path: 'assets/non_existent_test_path',
         storage: storage,
@@ -179,7 +192,9 @@ void main() {
       HttpOverrides.global = null;
     });
 
-    test('refreshFromRemote handles slow/hanging servers within httpTimeout without throwing', () async {
+    test(
+        'refreshFromRemote handles slow/hanging servers within httpTimeout without throwing',
+        () async {
       final server = await HttpServer.bind(InternetAddress.loopbackIPv4, 0);
       addTearDown(() async => server.close(force: true));
 
@@ -222,7 +237,8 @@ void main() {
       expect(dict.value('hello'), equals('Cached Hello'));
     });
 
-    test('refreshFromRemote fetches, merges, and persists remote translations', () async {
+    test('refreshFromRemote fetches, merges, and persists remote translations',
+        () async {
       final server = await HttpServer.bind(InternetAddress.loopbackIPv4, 0);
       addTearDown(() async => server.close(force: true));
 

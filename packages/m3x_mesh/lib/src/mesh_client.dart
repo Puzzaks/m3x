@@ -27,7 +27,8 @@ class M3xMeshClient {
   final String? localAppId;
 
   /// Registry of simulated sibling applications for development and testing.
-  final Map<String, M3xToolRegistry> _simulatedApps = <String, M3xToolRegistry>{};
+  final Map<String, M3xToolRegistry> _simulatedApps =
+      <String, M3xToolRegistry>{};
 
   /// Cached reverse-DNS package IDs discovered via [listAvailableApps],
   /// [discoverInstalledTools], or [queryTools].
@@ -69,8 +70,8 @@ class M3xMeshClient {
     this.enabled = true,
   })  : _localRegistry = localRegistry ?? M3xToolRegistry(),
         _incomingHandler = incomingHandler,
-        _simulationMode = enableSimulation ??
-            (!_isAndroidNative ? true : false) {
+        _simulationMode =
+            enableSimulation ?? (!_isAndroidNative ? true : false) {
     _cachePackagesFromTools(_localRegistry.tools);
     if (_simulationMode) {
       _initDefaultSimulatedApps();
@@ -111,7 +112,8 @@ class M3xMeshClient {
       final String toolName = toolCall.name;
       final Map<String, dynamic> toolArgs = toolCall.arguments;
 
-      debugPrint('[M3xMesh] 📥 [REQUEST RECEIVED] from $caller -> tool: $toolName, args: $toolArgs');
+      debugPrint(
+          '[M3xMesh] 📥 [REQUEST RECEIVED] from $caller -> tool: $toolName, args: $toolArgs');
 
       final stopwatch = Stopwatch()..start();
       M3xToolResult result;
@@ -133,7 +135,8 @@ class M3xMeshClient {
 
       stopwatch.stop();
       final ms = stopwatch.elapsedMilliseconds;
-      debugPrint('[M3xMesh] 📤 [RESPONSE SENT] to $caller -> result: ${result.toJson()} (took ${ms}ms)');
+      debugPrint(
+          '[M3xMesh] 📤 [RESPONSE SENT] to $caller -> result: ${result.toJson()} (took ${ms}ms)');
 
       return result.toJson();
     }
@@ -432,7 +435,8 @@ class M3xMeshClient {
       }
       return installed ?? false;
     } catch (e) {
-      debugPrint('[M3xMesh] ⚠️ Failed to check if package $packageName is installed: $e');
+      debugPrint(
+          '[M3xMesh] ⚠️ Failed to check if package $packageName is installed: $e');
       return false;
     }
   }
@@ -572,7 +576,8 @@ class M3xMeshClient {
     Map<String, dynamic> args, {
     String? callId,
   }) {
-    final effectiveId = callId ?? DateTime.now().microsecondsSinceEpoch.toString();
+    final effectiveId =
+        callId ?? DateTime.now().microsecondsSinceEpoch.toString();
     final call = M3xToolCall(
       id: effectiveId,
       name: toolName,
@@ -583,17 +588,20 @@ class M3xMeshClient {
 
   /// Dispatches a structured [M3xToolCall] to the [targetApp].
   Future<M3xToolResult> execute(String targetApp, M3xToolCall call) async {
-    debugPrint('[M3xMesh] 🚀 [OUTGOING CALL] to $targetApp -> tool: ${call.name}, args: ${call.arguments}');
+    debugPrint(
+        '[M3xMesh] 🚀 [OUTGOING CALL] to $targetApp -> tool: ${call.name}, args: ${call.arguments}');
 
     if (_isLocalApp(targetApp)) {
-      debugPrint('[M3xMesh] ⚡ [SHORT-CIRCUIT LOCAL CALL] in-memory dispatch to $targetApp -> tool: ${call.name}');
+      debugPrint(
+          '[M3xMesh] ⚡ [SHORT-CIRCUIT LOCAL CALL] in-memory dispatch to $targetApp -> tool: ${call.name}');
       final M3xToolResult result;
       if (_incomingHandler != null) {
         result = await _incomingHandler!(localAppId ?? 'local', call);
       } else {
         result = await _localRegistry.dispatchCall(call);
       }
-      debugPrint('[M3xMesh] 🏁 [LOCAL RESULT] from $targetApp -> result: ${result.toJson()}');
+      debugPrint(
+          '[M3xMesh] 🏁 [LOCAL RESULT] from $targetApp -> result: ${result.toJson()}');
       return result;
     }
 
@@ -610,18 +618,18 @@ class M3xMeshClient {
 
     if (_simulationMode) {
       result = await _executeSimulated(cleanApp, call);
-      debugPrint('[M3xMesh] 🏁 [OUTGOING RESULT] from $targetApp -> result: ${result.toJson()}');
+      debugPrint(
+          '[M3xMesh] 🏁 [OUTGOING RESULT] from $targetApp -> result: ${result.toJson()}');
       return result;
     }
 
     try {
       final uri = await _resolveContentUri(targetApp);
-      final dynamic response = await _channel
-          .invokeMethod('callContentProvider', {
-            'uri': uri,
-            'call': call.toJson(),
-          })
-          .timeout(const Duration(seconds: 16));
+      final dynamic response =
+          await _channel.invokeMethod('callContentProvider', {
+        'uri': uri,
+        'call': call.toJson(),
+      }).timeout(const Duration(seconds: 16));
 
       if (response is Map) {
         result = M3xToolResult.fromJson(Map<String, dynamic>.from(response));
@@ -652,7 +660,8 @@ class M3xMeshClient {
       );
     }
 
-    debugPrint('[M3xMesh] 🏁 [OUTGOING RESULT] from $targetApp -> result: ${result.toJson()}');
+    debugPrint(
+        '[M3xMesh] 🏁 [OUTGOING RESULT] from $targetApp -> result: ${result.toJson()}');
     return result;
   }
 
@@ -662,7 +671,8 @@ class M3xMeshClient {
   /// Returns a map guaranteed to include `{'online': bool, ...}`.
   Future<Map<String, dynamic>> checkAppStatus(String targetApp) async {
     try {
-      final aiStatusRes = await callTool(targetApp, 'get_ai_status', const <String, dynamic>{});
+      final aiStatusRes =
+          await callTool(targetApp, 'get_ai_status', const <String, dynamic>{});
       if (aiStatusRes.isSuccess && aiStatusRes.result != null) {
         return <String, dynamic>{
           'online': true,
@@ -670,7 +680,8 @@ class M3xMeshClient {
         };
       }
 
-      final queryStatusRes = await callTool(targetApp, 'query_status', const <String, dynamic>{});
+      final queryStatusRes =
+          await callTool(targetApp, 'query_status', const <String, dynamic>{});
       if (queryStatusRes.isSuccess && queryStatusRes.result != null) {
         return <String, dynamic>{
           'online': true,
@@ -750,21 +761,23 @@ class M3xMeshClient {
     }
   }
 
-  Future<M3xToolResult> _executeSimulated(String cleanApp, M3xToolCall call) async {
-    final reg = _simulatedApps[cleanApp] ?? _simulatedApps[call.name.split('_').first];
+  Future<M3xToolResult> _executeSimulated(
+      String cleanApp, M3xToolCall call) async {
+    final reg =
+        _simulatedApps[cleanApp] ?? _simulatedApps[call.name.split('_').first];
     if (reg == null) {
       return M3xToolResult.error(
         id: call.id,
         code: M3xToolError.methodNotFound,
-        message: "Sibling application '$cleanApp' is not registered or installed.",
+        message:
+            "Sibling application '$cleanApp' is not registered or installed.",
       );
     }
 
     return await reg.dispatchCall(call);
   }
 
-  static bool get _isAndroidNative =>
-      !kIsWeb && Platform.isAndroid;
+  static bool get _isAndroidNative => !kIsWeb && Platform.isAndroid;
 
   void _initDefaultSimulatedApps() {
     if (_defaultsInitialized) return;
@@ -779,8 +792,14 @@ class M3xMeshClient {
         parameters: {
           'type': 'object',
           'properties': {
-            'host': {'type': 'string', 'description': 'Destination hostname or IP'},
-            'count': {'type': 'integer', 'description': 'Number of packets to send'},
+            'host': {
+              'type': 'string',
+              'description': 'Destination hostname or IP'
+            },
+            'count': {
+              'type': 'integer',
+              'description': 'Number of packets to send'
+            },
           },
           'required': ['host'],
         },
@@ -802,11 +821,15 @@ class M3xMeshClient {
       M3xTool(
         name: 'calculate_subnet',
         app: 'ptk',
-        description: 'Calculates IPv4 network, broadcast, and host addresses from CIDR.',
+        description:
+            'Calculates IPv4 network, broadcast, and host addresses from CIDR.',
         parameters: {
           'type': 'object',
           'properties': {
-            'cidr': {'type': 'string', 'description': 'CIDR notation e.g. 192.168.1.0/24'},
+            'cidr': {
+              'type': 'string',
+              'description': 'CIDR notation e.g. 192.168.1.0/24'
+            },
           },
           'required': ['cidr'],
         },
@@ -863,7 +886,8 @@ class M3xMeshClient {
       M3xTool(
         name: 'get_ai_status',
         app: 'paios',
-        description: 'Returns PAIOS engine state, model readiness, and availability.',
+        description:
+            'Returns PAIOS engine state, model readiness, and availability.',
         parameters: const {'type': 'object', 'properties': {}},
         handler: (args) async => {
           'engine_running': true,

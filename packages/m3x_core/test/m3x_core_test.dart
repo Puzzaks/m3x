@@ -3,7 +3,9 @@ import 'package:m3x_core/m3x_core.dart';
 
 void main() {
   group('M3xFormatters / PuzzakFormatters', () {
-    test('formatBytes formats byte sizes across units with configurable decimals', () {
+    test(
+        'formatBytes formats byte sizes across units with configurable decimals',
+        () {
       expect(M3xFormatters.formatBytes(0), equals('0 B'));
       expect(M3xFormatters.formatBytes(512), equals('512 B'));
       expect(M3xFormatters.formatBytes(1024), equals('1.0 KB'));
@@ -14,7 +16,9 @@ void main() {
       expect(M3xFormatters.formatBytes(-2048), equals('-2.0 KB'));
     });
 
-    test('formatBytes and formatNetworkSpeed support throughput and bit-rate scaling', () {
+    test(
+        'formatBytes and formatNetworkSpeed support throughput and bit-rate scaling',
+        () {
       expect(
         M3xFormatters.formatBytes(0, isThroughput: true),
         equals('0 B/s'),
@@ -46,7 +50,8 @@ void main() {
       expect(convertSize(4096, true), equals('4.0 KB/s'));
     });
 
-    test('formatDuration formats elapsed durations with and without seconds', () {
+    test('formatDuration formats elapsed durations with and without seconds',
+        () {
       expect(
         M3xFormatters.formatDuration(const Duration(seconds: 42)),
         equals('42s'),
@@ -83,7 +88,9 @@ void main() {
   });
 
   group('AnalyticsService', () {
-    test('records events, notifies listeners, and deduplicates consecutive identical logs', () {
+    test(
+        'records events, notifies listeners, and deduplicates consecutive identical logs',
+        () {
       int notifyCount = 0;
       final remoteEvents = <String>[];
 
@@ -142,7 +149,9 @@ void main() {
       expect(notifyCount, equals(4));
     });
 
-    test('toggleAnalytics persists state, triggers callback, and gates onRemoteLog', () async {
+    test(
+        'toggleAnalytics persists state, triggers callback, and gates onRemoteLog',
+        () async {
       final remoteEvents = <String>[];
       final persisted = <String, dynamic>{};
       bool? toggledState;

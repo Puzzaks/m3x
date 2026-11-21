@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+// ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'elements.dart';
 import 'motion_blur.dart';
@@ -248,7 +249,8 @@ class SliverPageScaffold extends StatelessWidget {
         ? scrollView
         : LayoutBuilder(
             builder: (context, constraints) {
-              final bool showSidebar = constraints.maxWidth >= sidebarBreakpoint;
+              final bool showSidebar =
+                  constraints.maxWidth >= sidebarBreakpoint;
               final double clampedSidebarWidth = math.min(
                 sidebarWidth,
                 math.max(0.0, constraints.maxWidth * 0.42),
@@ -369,7 +371,8 @@ class AdaptiveNavScaffold extends StatelessWidget {
     this.floatingActionButton,
   });
 
-  Widget _wrapBadge(BuildContext context, Widget iconWidget, String? badgeLabel) {
+  Widget _wrapBadge(
+      BuildContext context, Widget iconWidget, String? badgeLabel) {
     if (badgeLabel == null || badgeLabel.isEmpty) {
       return iconWidget;
     }
@@ -771,8 +774,7 @@ class _M3xAdaptiveMasterDetailState extends State<M3xAdaptiveMasterDetail> {
                 });
               },
               onHorizontalDragEnd: (_) => setState(() => _isDragging = false),
-              onHorizontalDragCancel: () =>
-                  setState(() => _isDragging = false),
+              onHorizontalDragCancel: () => setState(() => _isDragging = false),
               onDoubleTap: () {
                 setState(() {
                   _customMasterWidth = null;
@@ -797,8 +799,9 @@ class _M3xAdaptiveMasterDetailState extends State<M3xAdaptiveMasterDetail> {
             ),
           );
 
-    final double targetDividerWidth =
-        widget.masterCollapsed ? 0.0 : (widget.allowResize ? dividerHitWidth : 8.0);
+    final double targetDividerWidth = widget.masterCollapsed
+        ? 0.0
+        : (widget.allowResize ? dividerHitWidth : 8.0);
 
     return AnimatedContainer(
       duration: _isDragging ? Duration.zero : widget.transitionDuration,
@@ -838,13 +841,14 @@ class _M3xAdaptiveMasterDetailState extends State<M3xAdaptiveMasterDetail> {
                     ? widget.expandedMasterFraction
                     : widget.mediumMasterFraction))
             .clamp(effectiveMin, effectiveMax);
-    final double resolvedOpenWidth =
-        (_customMasterWidth ?? baseMasterWidth).clamp(effectiveMin, effectiveMax);
+    final double resolvedOpenWidth = (_customMasterWidth ?? baseMasterWidth)
+        .clamp(effectiveMin, effectiveMax);
     final double targetMasterWidth =
         widget.masterCollapsed ? 0.0 : resolvedOpenWidth;
 
     final bool hasActiveDetail = widget.hasSelection || _showingDetailInCompact;
-    final bool showEmpty = !hasActiveDetail && widget.emptyDetailBuilder != null;
+    final bool showEmpty =
+        !hasActiveDetail && widget.emptyDetailBuilder != null;
     final Object effectiveDetailKey = showEmpty
         ? '__m3x_adaptive_empty_detail__'
         : (widget.detailKey ?? hasActiveDetail);
@@ -887,7 +891,8 @@ class _M3xAdaptiveMasterDetailState extends State<M3xAdaptiveMasterDetail> {
                         excluding: widget.masterCollapsed,
                         child: ExcludeFocus(
                           excluding: widget.masterCollapsed,
-                          child: widget.masterBuilder(context, true, _openDetail),
+                          child:
+                              widget.masterBuilder(context, true, _openDetail),
                         ),
                       ),
                     ),
@@ -933,8 +938,7 @@ class _M3xAdaptiveMasterDetailState extends State<M3xAdaptiveMasterDetail> {
                   );
                 },
                 transitionBuilder: (child, animation) {
-                  final Offset slideBegin =
-                      Offset(isRtl ? -0.025 : 0.025, 0.0);
+                  final Offset slideBegin = Offset(isRtl ? -0.025 : 0.025, 0.0);
                   return FadeTransition(
                     opacity: animation,
                     child: SlideTransition(
@@ -983,8 +987,8 @@ class _M3xAdaptiveMasterDetailState extends State<M3xAdaptiveMasterDetail> {
         );
       },
       transitionBuilder: (child, animation) {
-        final bool isIncomingDetail = child.key !=
-            const ValueKey<String>('__m3x_compact_master__');
+        final bool isIncomingDetail =
+            child.key != const ValueKey<String>('__m3x_compact_master__');
         final double directionSign = isIncomingDetail ? 1.0 : -1.0;
         final double rtlMultiplier = isRtl ? -1.0 : 1.0;
         return FadeTransition(
@@ -1292,7 +1296,6 @@ class PuzzakTheme {
 /// Modern alias for [PuzzakTheme] under the M3x brand.
 typedef M3xTheme = PuzzakTheme;
 
-
 /// Signature startup cross-fade shell from `PTK`, `geminilocal`, and `the2k48`.
 ///
 /// Smoothly cross-fades from a centered rounded [CircularProgressIndicator] to
@@ -1326,20 +1329,21 @@ class StartupCrossFadeShell extends StatelessWidget {
           alignment: Alignment.center,
           duration: duration,
           firstChild: SizedBox(
-            height: constraints.maxHeight.isFinite ? constraints.maxHeight : null,
+            height:
+                constraints.maxHeight.isFinite ? constraints.maxHeight : null,
             width: constraints.maxWidth.isFinite ? constraints.maxWidth : null,
             child: child,
           ),
           secondChild: SizedBox(
-            height: constraints.maxHeight.isFinite ? constraints.maxHeight : 300,
+            height:
+                constraints.maxHeight.isFinite ? constraints.maxHeight : 300,
             width: constraints.maxWidth.isFinite ? constraints.maxWidth : 300,
             child: const Center(
               child: CircularProgressIndicator(strokeCap: StrokeCap.round),
             ),
           ),
-          crossFadeState: appStarted
-              ? CrossFadeState.showFirst
-              : CrossFadeState.showSecond,
+          crossFadeState:
+              appStarted ? CrossFadeState.showFirst : CrossFadeState.showSecond,
         );
       },
     );
@@ -1444,8 +1448,7 @@ class FloatingNavPill extends StatelessWidget {
     // Use light mint / primaryContainer as in Sameera Essentials (Image 1)
     final Color effectiveBg = backgroundColor ?? scheme.primaryContainer;
     final Color effectiveFg = foregroundColor ?? scheme.onPrimaryContainer;
-    final Color effectiveBackBg =
-        backButtonColor ?? scheme.onPrimaryContainer;
+    final Color effectiveBackBg = backButtonColor ?? scheme.onPrimaryContainer;
     final Color effectiveBackFg =
         backButtonIconColor ?? scheme.primaryContainer;
 
