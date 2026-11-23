@@ -122,6 +122,36 @@ void main() {
       expect(find.text('Release Notes'), findsOneWidget);
       expect(find.text('0.1.4'), findsWidgets);
       expect(find.text('Added onHeaderTap support.'), findsOneWidget);
+      expect(find.text('\u2022'), findsOneWidget);
+      expect(find.text('вЂў'), findsNothing);
+    });
+
+    testWidgets('showChangelogDialog renders nested bullets without mojibake',
+        (tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          theme: ThemeData(useMaterial3: true),
+          home: Scaffold(
+            body: Builder(
+              builder: (context) => ElevatedButton(
+                onPressed: () => SettingsBentoHeader.showChangelogDialog(
+                  context,
+                  changelogContent: '- Top bullet\n  - Nested bullet',
+                ),
+                child: const Text('Open Nested Changelog'),
+              ),
+            ),
+          ),
+        ),
+      );
+
+      await tester.tap(find.text('Open Nested Changelog'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('\u2022'), findsOneWidget);
+      expect(find.text('\u25E6'), findsOneWidget);
+      expect(find.text('вЂў'), findsNothing);
+      expect(find.text('в—¦'), findsNothing);
     });
   });
 }

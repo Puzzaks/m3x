@@ -884,7 +884,7 @@ class _LogViewerListState extends State<LogViewerList> {
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                   child: Text(
-                                    'Г—$count',
+                                    '\u00D7$count',
                                     style: TextStyle(
                                       fontSize: 10,
                                       fontWeight: FontWeight.bold,

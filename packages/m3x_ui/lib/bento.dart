@@ -719,7 +719,7 @@ class SettingsBentoHeader extends StatelessWidget {
                 SizedBox(
                   width: 16,
                   child: Text(
-                    indent == 0 ? 'вЂў' : 'в—¦',
+                    indent == 0 ? '\u2022' : '\u25E6',
                     style: baseBodyStyle.copyWith(
                       fontWeight: FontWeight.w700,
                       color: scheme.primary,

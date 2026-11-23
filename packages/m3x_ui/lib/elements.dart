@@ -1276,7 +1276,7 @@ class CardContents {
                       const SizedBox(width: 8),
                       Flexible(
                         child: Text(
-                          'AdMob Test Banner (320Г—50)',
+                          'AdMob Test Banner (320\u00D750)',
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(

@@ -16,7 +16,7 @@ Every package in this monorepo is designed to stay focused, dependency-light, an
 
 | Package | Version | Pub Status | Description |
 | :--- | :---: | :---: | :--- |
-| **[`m3x_ui`](packages/m3x_ui)** | `0.1.4` | Leaf (0 third-party deps) | Pure-Flutter Material 3 eXtended widgets: segmented `CardGroup`, `CardContents`, `SettingsBentoHeader`, adaptive scaffolds (`SliverPageScaffold`, `AdaptiveNavScaffold`, `M3xAdaptiveMasterDetail`, `M3xAdaptiveSplitHero`, `M3xAdaptiveContentFrame`), pickers, onboarding, telemetry cards, and `MotionBlurContainer`. |
+| **[`m3x_ui`](packages/m3x_ui)** | `0.1.5` | Leaf (0 third-party deps) | Pure-Flutter Material 3 eXtended widgets: segmented `CardGroup`, `CardContents`, `SettingsBentoHeader`, adaptive scaffolds (`SliverPageScaffold`, `AdaptiveNavScaffold`, `M3xAdaptiveMasterDetail`, `M3xAdaptiveSplitHero`, `M3xAdaptiveContentFrame`), pickers, onboarding, telemetry cards, and `MotionBlurContainer`. |
 | **[`m3x_core`](packages/m3x_core)** | `0.0.3` | Leaf (0 third-party deps) | Shared core utilities: consecutive-deduplicating `AnalyticsService` logger and `M3xFormatters` (bytes, throughput, durations). |
 | **[`m3x_dict`](packages/m3x_dict)** | `0.0.4` | Leaf (`http` only) | Standalone 3-tier JSON localization engine (`Dictionary`, `DictionaryStorage`) with bundled assets, local cache overlay, and non-blocking SWR remote HTTP refresh. |
 | **[`m3x_chat`](packages/m3x_chat)** | `0.2.5` | Complication (`m3x_ui`) | AI/assistant chat UI: `ChatMessage`, `ChatBubbleList`, `ChatMessageBubble`, `ChatAnimatedSkeleton`, `ChatThoughtsBlock` with live-stream auto-scroll, and `flutter_markdown_plus` rendering. |

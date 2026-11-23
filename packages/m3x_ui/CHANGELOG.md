@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.5
+
+- Fixed mojibaked Unicode literals across `m3x_ui` (`\u2022` / `\u25E6` changelog bullets in `bento.dart`, `320\u00D750` in `elements.dart`, and `\u00D7$count` in `telemetry.dart`).
+- Added regression tests verifying `showChangelogDialog` renders `\u2022` and `\u25E6` bullets cleanly.
+
 ## 0.1.4
 
 - Added `onHeaderTap` callback to `SettingsBentoHeader` with `InkWell` and light haptic feedback on the top wide header card.
