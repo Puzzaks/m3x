@@ -226,22 +226,24 @@ class SettingsBentoHeader extends StatelessWidget {
                       final entry = entries[index];
                       final name = entry.key;
                       final spec = entry.value;
-                      final isWorkspace = name.startsWith('m3x') ||
-                          name.startsWith('puzzak_') ||
-                          spec.startsWith('path:');
+                      final bool isLocalPath = spec.startsWith('path:');
+                      final bool isGit = spec.startsWith('git:');
+                      final bool isM3xEcosystem =
+                          name.startsWith('m3x') || name.startsWith('puzzak_');
+                      final bool isHighlighted = isLocalPath || isM3xEcosystem;
                       return ListTile(
                         contentPadding: const EdgeInsets.symmetric(
                             horizontal: 4, vertical: 2),
                         leading: CircleAvatar(
-                          backgroundColor: isWorkspace
+                          backgroundColor: isHighlighted
                               ? scheme.primaryContainer
                               : scheme.surfaceContainerHighest,
                           child: Icon(
-                            isWorkspace
+                            isHighlighted
                                 ? Icons.widgets_rounded
                                 : Icons.inventory_2_outlined,
                             size: 20,
-                            color: isWorkspace
+                            color: isHighlighted
                                 ? scheme.onPrimaryContainer
                                 : scheme.onSurfaceVariant,
                           ),
@@ -264,7 +266,7 @@ class SettingsBentoHeader extends StatelessWidget {
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 8, vertical: 2),
                                 decoration: BoxDecoration(
-                                  color: isWorkspace
+                                  color: isHighlighted
                                       ? scheme.secondaryContainer
                                       : scheme.surfaceContainerHigh,
                                   borderRadius: BorderRadius.circular(10),
@@ -276,7 +278,7 @@ class SettingsBentoHeader extends StatelessWidget {
                                   style: TextStyle(
                                     fontSize: 11,
                                     fontWeight: FontWeight.w600,
-                                    color: isWorkspace
+                                    color: isHighlighted
                                         ? scheme.onSecondaryContainer
                                         : scheme.onSurfaceVariant,
                                   ),
@@ -286,27 +288,31 @@ class SettingsBentoHeader extends StatelessWidget {
                           ],
                         ),
                         subtitle: Text(
-                          isWorkspace
+                          isLocalPath
                               ? (workspaceBadge ?? 'Local Workspace Package')
-                              : (pubBadge ?? 'pub.dev Dependency'),
+                              : isGit
+                                  ? 'Git Dependency'
+                                  : isM3xEcosystem
+                                      ? 'M3x Ecosystem (pub.dev)'
+                                      : (pubBadge ?? 'pub.dev Dependency'),
                           style: TextStyle(
                             fontSize: 12,
                             color: scheme.onSurfaceVariant,
                           ),
                         ),
                         trailing: Icon(
-                          isWorkspace
+                          isHighlighted
                               ? Icons.verified_rounded
                               : (onPackageTap != null
                                   ? Icons.open_in_new_rounded
                                   : Icons.check_circle_outline_rounded),
                           size: 18,
-                          color: isWorkspace
+                          color: isHighlighted
                               ? scheme.primary
                               : scheme.onSurfaceVariant,
                         ),
                         onTap: onPackageTap != null
-                            ? () => onPackageTap(name, spec, isWorkspace)
+                            ? () => onPackageTap(name, spec, isLocalPath)
                             : null,
                       );
                     },
@@ -361,6 +367,9 @@ class SettingsBentoHeader extends StatelessWidget {
   /// Optional custom main text for the Modules card. Overrides "Tap to view".
   final String? modulesSubtitle;
 
+  /// Optional callback invoked when the top header card is tapped.
+  final VoidCallback? onHeaderTap;
+
   /// Optional callback invoked when the Version card is tapped.
   final VoidCallback? onVersionTap;
 
@@ -381,6 +390,7 @@ class SettingsBentoHeader extends StatelessWidget {
     this.connectedModulesCount,
     this.modulesTitle,
     this.modulesSubtitle,
+    this.onHeaderTap,
     this.onVersionTap,
     this.onModulesTap,
   });
@@ -451,6 +461,7 @@ class SettingsBentoHeader extends StatelessWidget {
         defaultVersionDisplay.trim().isNotEmpty
             ? defaultVersionDisplay.trim()
             : (versionDisplay.trim().isNotEmpty ? versionDisplay.trim() : null);
+    final VoidCallback? effectiveOnHeaderTap = onHeaderTap;
     final VoidCallback? effectiveOnVersionTap = onVersionTap ??
         (defaultChangelogContent.trim().isNotEmpty
             ? () => showChangelogDialog(
@@ -468,47 +479,55 @@ class SettingsBentoHeader extends StatelessWidget {
       leadingCardWide: true,
       children: [
         // 1. Top Wide Header Card
-        Padding(
-          padding: const EdgeInsets.all(18),
-          child: Row(
-            children: [
-              Container(
-                width: 52,
-                height: 52,
-                decoration: BoxDecoration(
-                  color: scheme.primaryContainer,
-                  borderRadius: BorderRadius.circular(14),
+        InkWell(
+          onTap: effectiveOnHeaderTap != null
+              ? () {
+                  HapticFeedback.lightImpact();
+                  effectiveOnHeaderTap();
+                }
+              : null,
+          child: Padding(
+            padding: const EdgeInsets.all(18),
+            child: Row(
+              children: [
+                Container(
+                  width: 52,
+                  height: 52,
+                  decoration: BoxDecoration(
+                    color: scheme.primaryContainer,
+                    borderRadius: BorderRadius.circular(14),
+                  ),
+                  child: Center(
+                    child: effectiveIcon,
+                  ),
                 ),
-                child: Center(
-                  child: effectiveIcon,
-                ),
-              ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      appName,
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: -0.2,
-                          ),
-                    ),
-                    if (subtitle.isNotEmpty) ...[
-                      const SizedBox(height: 2),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
                       Text(
-                        subtitle,
-                        style: TextStyle(
-                          color: scheme.onSurfaceVariant,
-                          fontSize: 12,
-                        ),
+                        appName,
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: -0.2,
+                            ),
                       ),
+                      if (subtitle.isNotEmpty) ...[
+                        const SizedBox(height: 2),
+                        Text(
+                          subtitle,
+                          style: TextStyle(
+                            color: scheme.onSurfaceVariant,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
                     ],
-                  ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
         // 2. Bottom-Left Card: Version & Build

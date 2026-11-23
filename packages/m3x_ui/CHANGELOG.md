@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.4
+
+- Added `onHeaderTap` callback to `SettingsBentoHeader` with `InkWell` and light haptic feedback on the top wide header card.
+- Fixed `SettingsBentoHeader.showDependenciesDialog` source classification so pub.dev `m3x_*` / `puzzak_*` packages display `M3x Ecosystem (pub.dev)` instead of `Local Workspace Package`, while `path:` and `git:` dependencies are labeled accurately.
+- Added regression widget tests for `onHeaderTap`, `showDependenciesDialog` source classification, and `showChangelogDialog` modal bottom sheet presentation.
+
 ## 0.1.3
 
 - Added runnable `example/main.dart`, `pub.dev` package links, and Flutter 3.50 static analysis compatibility for 160/160 pub points.
